@@ -1,0 +1,128 @@
+import router from '.';
+import store from '../store';
+
+export default [
+  {
+    path: '/',
+    name: 'Home',
+    component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue')
+  },
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  // },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
+	},
+	{
+		path: '/performance',
+		name: 'Performance',
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Placeholder.vue'),
+    meta: {
+      authRequired: true,
+    }
+	},
+	{
+		path: '/settings',
+		name: 'Settings',
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Placeholder.vue'),
+    meta: {
+      authRequired: true,
+    }
+	},
+	{
+		path: '/tasks',
+		name: 'Tasks',
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Placeholder.vue'),
+    meta: {
+      authRequired: true,
+    }
+	},
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: () => import(/* webpackChunkName: "Signup" */ '../views/Signup.vue')
+  },
+  {
+    path: '/password-reset/:token',
+    name: 'NewPassword',
+    component: () => import(/* webpackChunkName: "NewPasswordForm" */ '@/components/molecules/NewPasswordForm.vue'),
+    beforeEnter: (routeTo, routeFrom, next) => {
+      const token = routeTo.params.token;
+      const user = routeTo.query.user;
+      const payload = { token, user }
+      store.dispatch('validateRequestToken', payload)
+        .then((res) => {
+          if(res.status === 200)
+            next();
+          else if(res.response.status === 401) {
+            router.push({ name: 'PasswordReset', props: true, params: {  tokenValidated: false } })
+          }
+        })
+    }
+  },
+  {
+    path: '/password-reset',
+    name: 'PasswordReset',
+    component: () => import(/* webpackChunkName: "PasswordReset" */ '@/components/molecules/PasswordResetForm')
+  },
+  {
+    path: '/okrs/okr',
+    name: 'Okr',
+    component: () => import(/* webpackChunkName: "Signup" */ '../views/Okr.vue'),
+    children: [
+      {
+        path: '/okrs/okr/new',
+        name: 'NewOkr',
+        component: () => import(/* webpackChunkName: "CreateOkr" */ '@/components/organisms/CreateOkr')
+      },
+      {
+        path: '/okrs/okr/:id',
+        name: 'OkrById',
+        component: () => import(/* webpackChunkName: "Okr" */ '@/components/organisms/Okr'),
+        beforeEnter: (routeTo, routeFrom, next) => {
+          if(store.state.okrs.currentOkrData === null) {
+            store.dispatch('getOkr', routeTo.params.id);
+            next();
+          } else {
+            next();
+          }
+        }
+      }
+    ]
+  },
+  {
+    path: '/okrs',
+    name: 'Okrs',
+    component: () => import(/* webpackChunkName: "OkrDashboard" */ '@/components/organisms/OkrDashboard'),
+    meta: {
+      authRequired: true,
+    },
+    beforeEnter: (routeTo, routeFrom, next) => {
+      if(store.state.okrs.allOkrData.length === 0 ) {
+        store.dispatch('getOkrs');
+        next();
+      } else {
+        next();
+      }
+    }
+	},
+	{
+    path: '/login-success',
+    name: 'LoginSuccess',
+    beforeEnter: (routeTo, routeFrom, next) => {
+      console.log('here')
+      if(routeTo.query.authorized) {
+        store.dispatch('setAuthorized', true);
+        store.dispatch('setUserData', routeTo.query);
+        next({ path:'/okrs' });
+      }
+    }
+  },
+]

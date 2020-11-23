@@ -1,0 +1,118 @@
+.sidebar {
+    background-color: $primary-blue;
+    height: calc(100vh - (#{$vr} * 8));
+    max-height: 100vh;
+    width: 40%;
+    max-width: 125px;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    padding-top: $vr * 8;
+    transform: translateX(-$vr * 30);
+    transition: transform 250ms cubic-bezier(0,0,.38,.9);
+    @include mq($bp-medium) {
+        max-width: 12%;
+        min-width: 112px;
+        position: fixed;
+        transform: translateX(0);
+    }
+    &__close-button {
+        position: absolute;
+        top: 0;
+        background-color: $white;
+        height: $vr * 7;
+        width: $vr * 7;
+        left: 100%;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
+        margin: $vr * 2;
+        transform: scale(0);
+        visibility: hidden;
+        transition: visibility 0ms linear 150ms;
+        .close-icon {
+            fill: $alpha-periwinkle-90;
+        }
+    }
+    &--open {
+        transform: translateX(0);
+        z-index: 1001;
+        .sidebar__close-button {
+            transform: scale(1);
+            visibility: visible;
+            transition: transform 100ms cubic-bezier(0,0,.38,.9) 400ms;
+        }
+    }
+    &__container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        &--fixed {
+            position: fixed;
+        }
+    }
+    &__links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        width: 100%;
+        &--top {
+            height: 90%;
+        }
+        &--bottom {
+            align-self: flex-end;
+            padding-bottom: $vr * 2;
+        }
+    }
+    &__link {
+        padding: $vr;
+        transition: .4s;
+        font-size: $vr * 2;
+        position: relative;
+        @include mq($bp-medium) {
+            min-height: 50px;
+            padding: $vr * 2 $vr * 3;
+        }
+        &:hover {
+            background-color: #192d6e;
+            color: $white;
+            a {
+                color: $white;
+                fill: $white;
+            }
+        }
+        &.active {
+            background-color: #192d6e;
+            color: $white;
+            a {
+                color: $white;
+                fill: $white;
+            }
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 3px;
+                height: 100%;
+                background-color: $white;
+            }
+        }
+        a {
+            display: block;
+            font-family: $font-primary;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: rgba(255,255,255, 0.70);
+            fill: rgba(255,255,255, 0.70);
+            box-sizing: border-box;
+            transition: .4s;
+        }
+    }
+}

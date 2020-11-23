@@ -1,0 +1,5 @@
+.fade-in {
+    opacity: 1.0;
+    transform: translate(0, 0);
+    transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+}

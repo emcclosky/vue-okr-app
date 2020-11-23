@@ -1,0 +1,33 @@
+.component {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    padding: $vr * 6  $vr * 3;
+    @include mq($bp-small) {
+        padding: $vr * 6 $vr * 12;
+    }
+    @include mq($bp-medium) {
+        padding: $vr * 8 10.5vw;
+    }
+    &--border-top {
+        border-top: 1px solid #E6ECF8;
+    }
+    &--full-width {
+        padding: $vr * 6 0;
+        @include mq($bp-small) {
+            padding: $vr * 6 0;
+        }
+        @include mq($bp-medium) {
+            padding: $vr * 8 0;
+        }
+    }
+    &--narrow {
+        padding: $vr * 6  $vr * 3;
+        @include mq($bp-small) {
+            padding: $vr * 6 $vr * 12;
+        }
+        @include mq($bp-medium) {
+            padding: $vr * 8 18.5vw;
+        }
+    }
+}

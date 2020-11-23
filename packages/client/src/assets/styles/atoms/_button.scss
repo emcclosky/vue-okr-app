@@ -1,0 +1,119 @@
+.button {
+    font-size: $vr * 2;
+    letter-spacing: 1px;
+    padding: $vr * 1.5 $vr * 4;
+    z-index: 1;
+    box-shadow: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 0 8px;
+    font-weight: 500;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    border-radius: $vr / 2;
+    transition: all .3s ease-in-out;
+    &--circle {
+        border-radius: 50%;
+        height: $vr * 8;
+        width: $vr * 8;
+        padding: 0;
+        border: transparent;
+        margin: 0 $vr;
+        @include mq($bp-medium) {
+            height: $vr * 6.5;
+            width: $vr * 6.5;
+        }
+        svg {
+            vertical-align: middle;
+        }
+    }
+    &--red {
+        background-color: $warning;
+        color: white;
+        &:hover {
+            background-color: darken($color: $warning, $amount: 5%);
+        }
+    }
+    &--hidden {
+        visibility: hidden;
+        height: 0;
+        pointer-events: none;
+        padding: 0;
+        margin: 0;
+        border-width: 0;
+    }
+    &--border {
+        border: 2px solid $dark-grey;
+        background-color: transparent;
+        &:hover {
+            background-color: $dark-grey;
+            color: $white;
+        }
+    }
+    &--green {
+        background-color: $primary-green;
+        border: 2px solid $primary-green;
+        color: $white;
+        svg {
+            fill: $white;
+        }
+        &:hover {
+            background-color: darken($color: $primary-green, $amount: 5%);
+        }
+    }
+    &--grey {
+        background-color: $primary-grey;
+        border: 2px solid $primary-grey;
+        &:hover {
+            background-color: darken($color: $primary-grey, $amount: 5%);
+        }
+    }
+    &--anchor {
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        letter-spacing: normal;
+        text-transform: none;
+    }
+    &--google {
+        background-color: transparent;
+        border: 2px solid $secondary-grey;
+        border-radius: 4px;
+        color: $tertiary-grey;
+        &:before {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: $vr * 1.5;
+            content: url(../images/google__G__Logo.png);
+            position: relative;
+        }
+        &:hover {
+            color: $white;
+            background-color: $dark-grey;;
+        }
+    }
+}
+
+
+/****************
+*** OVERRIDES ***
+****************/
+
+.signup-form, .login-form, .password-reset-form, .new-password-form {
+    .button {
+        &--green {
+            margin-top: $vr * 4;
+        }
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.password-reset-form {
+    .button {
+        &--green {
+            margin-top: $vr * 3;
+        }
+    }
+}

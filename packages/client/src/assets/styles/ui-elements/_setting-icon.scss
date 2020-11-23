@@ -1,0 +1,15 @@
+.setting-icon {
+    height: $vr * 3;
+    width: $vr * 3;
+}
+
+/****************
+*** OVERRIDES ***
+****************/
+
+.sidebar {
+    .setting-icon {
+        height: $vr * 4.5;
+        width: $vr * 4.5;
+    }
+}

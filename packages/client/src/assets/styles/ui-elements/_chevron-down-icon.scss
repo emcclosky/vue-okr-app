@@ -1,0 +1,10 @@
+.chevron-down-icon {
+    // fill: $dark-grey;
+    transition: all 150ms ease-in-out;
+}
+
+.nav-bar__link:hover {
+    .chevron-down-icon {
+        fill: $primary-green;
+    }
+}

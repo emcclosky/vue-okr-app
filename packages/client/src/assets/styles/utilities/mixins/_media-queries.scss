@@ -1,0 +1,9 @@
+@mixin mq ($breakpoint) {
+    @media only screen and (min-width:$breakpoint) {
+        @content;
+    }
+}
+
+$bp-small: pxToEm(480);
+$bp-medium: pxToEm(768);
+$bp-large: pxToEm(1024);

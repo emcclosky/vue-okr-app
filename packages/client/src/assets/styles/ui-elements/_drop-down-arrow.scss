@@ -1,0 +1,7 @@
+.drop-down-arrow {
+    transform: rotate(-90deg);
+    transition: all .3s ease-in-out;
+    &--active {
+        transform: rotate(0);
+    }
+}

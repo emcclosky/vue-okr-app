@@ -1,0 +1,40 @@
+.key-result-card {
+    padding: $vr * 2 0 $vr * 2 $vr * 4;
+    @include mq($bp-medium) {
+        padding: $vr * 4 $vr * 6;
+    }
+    &__container {
+        display: flex;
+    }
+    &__content-wrapper {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        @include mq($bp-medium) {
+            flex-direction: row;
+        }
+    }
+    &__left-content {
+        flex-basis: 70%;
+        padding-bottom: $vr * 2;
+        @include mq($bp-medium) {
+            padding: 0;
+        }
+    }
+    &__right-content {
+        display: flex;
+        flex-basis: 32%;
+        align-items: center;
+    }
+    &__percentage {
+        margin-left: $vr;
+    }
+    p {
+        margin: 0;
+        font-size: $vr * 2;
+        @include mq($bp-medium) {
+            font-size: $vr * 2.25;
+        }
+    }
+}
+

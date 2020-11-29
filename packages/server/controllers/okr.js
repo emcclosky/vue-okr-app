@@ -107,7 +107,7 @@ const putOkr = (logger) => async (req, res) => {
     const insertKR = `
         INSERT INTO key_results (objective_id, result, completion_rate)
         VALUES
-        ${insertValuesPlaceholder.join(',')}
+        ${insertValuesPlaceholder.join(',')};
     `;
 
     const updateObjective = `

@@ -1,98 +1,98 @@
 .login-form {
-    &__container {
-        background-color: $white;
-        border-radius: $vr;
-        max-width: 550px;
-        margin: $vr * 9 auto;
-        @include mq($bp-medium) {
-            margin: $vr * 12 auto 0 auto;
-        }
+  &__container {
+    background-color: $white;
+    border-radius: $vr;
+    max-width: 550px;
+    margin: $vr * 4 auto;
+    @include mq($bp-medium) {
+      margin: $vr * 12 auto 0 auto;
     }
-    h2 {
-        @include h2;
-        font-weight: 400;
-        line-height: $vr * 4;
-        margin: 0;
-        text-align: center;
+  }
+  h2 {
+    @include h2;
+    font-weight: 400;
+    line-height: $vr * 4;
+    margin: 0;
+    text-align: center;
+  }
+  &__inner-container {
+    padding: $vr * 6 $vr * 5 $vr * 4.5;
+    border: 1px solid $secondary-grey;
+    border-radius: $vr;
+    box-shadow: 0 20px 40px 0 rgba(174, 201, 228, 0.3);
+    p {
+      font-family: $font-secondary;
+      font-size: $vr * 1.75;
+      text-align: center;
     }
-    &__inner-container {
-        padding: $vr * 6 $vr * 5 $vr * 4.5;
-        border: 1px solid $secondary-grey;
-        border-radius: $vr;
-        box-shadow: 0 20px 40px 0 rgba(174,201,228,0.3);
-        p {
-            font-family: $font-secondary;
-            font-size: $vr * 1.75;
-            text-align: center;
-        }
-    }
-    &__form-container {
-        box-sizing: border-box;
-        display: inline-block;
-        font-size: $vr * 1.75;
-        font-family: $font-secondary;
-        vertical-align: top;
-        white-space: normal;
-        width: 100%;
-    }
-    &__form-group {
-        display: flex;
-        justify-content: space-between;
-    }
-    &__form-item {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        label {
-            position: relative;
-            transition: all 250ms ease-in-out;
-            top: $vr * 3.5;
-            color: $tertiary-grey;
-            padding: $vr 0 0 $vr;
-            &.active {
-                font-size: $vr * 1.5;
-                top: 0;
-            }
-        }
-        &:nth-child(2) {
-            margin-left: $vr * 1.5;
-        }
-    }
-    &__alert {
-        font-family: $font-secondary;
-        font-weight: 600;
-        background-color: $warning;
-        color: $white;
+  }
+  &__form-container {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: $vr * 1.75;
+    font-family: $font-secondary;
+    vertical-align: top;
+    white-space: normal;
+    width: 100%;
+  }
+  &__form-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__form-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    label {
+      position: relative;
+      transition: all 250ms ease-in-out;
+      top: $vr * 3.5;
+      color: $tertiary-grey;
+      padding: $vr 0 0 $vr;
+      &.active {
         font-size: $vr * 1.5;
-        padding: $vr * 1.5 0;
-        border-radius: 4px;
-        text-align: center;
-        width: 100%;
-        margin: $vr * 2 0;
-        display: inline-block;
+        top: 0;
+      }
     }
-    &__help-text {
-        margin-top: $vr * 2;
-        display: inline-block;
+    &:nth-child(2) {
+      margin-left: $vr * 1.5;
     }
-    &__divider {
-        display: flex;
-        text-align: center;
-        width: 100%;
-        position: relative;
-        justify-content: center;
-        align-items: center;
-        margin: $vr * 2 0;
-        text-transform: uppercase;
-        font-family: $font-secondary;
-        span {
-            background-color: $white;
-            padding: 0 $vr * 2.25;
-            position: relative;
-            z-index: 5;
-        }
-        &:after {
-            @include smallDivider;
-        }
+  }
+  &__alert {
+    font-family: $font-secondary;
+    font-weight: 600;
+    background-color: $warning;
+    color: $white;
+    font-size: $vr * 1.5;
+    padding: $vr * 1.5 0;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+    margin: $vr * 2 0;
+    display: inline-block;
+  }
+  &__help-text {
+    margin-top: $vr * 2;
+    display: inline-block;
+  }
+  &__divider {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin: $vr * 2 0;
+    text-transform: uppercase;
+    font-family: $font-secondary;
+    span {
+      background-color: $white;
+      padding: 0 $vr * 2.25;
+      position: relative;
+      z-index: 5;
     }
+    &:after {
+      @include smallDivider;
+    }
+  }
 }

@@ -1,0 +1,32 @@
+.hero-standard {
+  position: relative;
+  height: fit-content;
+  width: 100%;
+  text-align: center;
+  background-color: $white;
+  padding: $vr * 12 $vr * 2.5 $vr * 7 $vr * 2.5;
+  @include mq($bp-small) {
+    padding: $vr * 14 11.25vw $vr * 7.5 11.25vw;
+  }
+  @include mq($bp-medium) {
+    padding: $vr * 14 11.25vw $vr * 7.5 11.25vw;
+  }
+  &__button-container {
+    padding-top: $vr * 2;
+    button {
+      margin-left: 0;
+    }
+  }
+  h1 {
+    @include h1;
+    font-size: $vr * 4.5;
+    line-height: $vr * 4.5;
+    @include mq($bp-medium) {
+    }
+  }
+  p {
+    font-size: $vr * 2.25;
+    @include font-primary-reg;
+    margin-top: 0;
+  }
+}

@@ -1,112 +1,105 @@
 body {
-    height: 100vh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    box-sizing: border-box;
-    letter-spacing: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: $blue-grey;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  letter-spacing: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: $blue-grey;
+  & *:focus {
+    outline-width: 0;
+  }
+  & input:focus {
+    outline-offset: -1px;
+    outline-width: 3px;
+    outline-color: #208df6;
+  }
+  &.tabbed {
     & *:focus {
-        outline-width: 0;
+      outline-width: 4px;
+      outline-color: #208df6;
+      outline-offset: 3px;
     }
-    & input:focus {
-        outline-offset: -1px;
-        outline-width: 3px;
-        outline-color: #208df6;
+  }
+  &.fixed {
+    position: fixed;
+  }
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: $accent-blue;
+    &:hover {
+      color: darken($color: $accent-blue, $amount: 10%);
     }
-    &.tabbed {
-        & *:focus {
-            outline-width: 4px;
-            outline-color: #208df6;
-            outline-offset: 3px;
-        }
+  }
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid $secondary-grey;
+    height: $vr * 4;
+    border-radius: 4px;
+    position: relative;
+    padding-left: $vr;
+    background-color: transparent;
+    &:focus {
+      outline-offset: 0px;
     }
-    &.fixed {
-        position: fixed;
+  }
+  p {
+    font: $font-primary;
+    font-size: $vr * 2.25;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+  .skip {
+    position: absolute;
+    top: 0;
+    left: -999px;
+    z-index: -99;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    color: $white;
+    text-decoration: none;
+    &:focus {
+      left: 0;
+      height: auto;
+      padding: $vr;
+      margin: $vr 0 0 $vr;
+      width: auto;
+      z-index: 10;
     }
-    a {
-        cursor: pointer;
-        text-decoration: none;
-        color: $accent-blue;
-        &:hover {
-            color: darken($color: $accent-blue, $amount: 10%);
-        }
+  }
+  .page-container {
+    flex: auto;
+    display: flex;
+    min-width: 0;
+    min-height: 100vh;
+  }
+  .page-scrim {
+    transform: scale(0);
+    transition: opacity 100ms linear, transform 0ms linear 100ms;
+    opacity: 0;
+    &--active {
+      background: rgba(30, 30, 28, 0.8);
+      position: absolute;
+      content: "";
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 6;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 100ms linear;
     }
-    input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        border: 2px solid $secondary-grey;
-        height: $vr * 4;
-        border-radius: 4px;
-        position: relative;
-        padding-left: $vr;
-        background-color: transparent;
-        &:focus {
-            outline-offset: 0px;
-        }
+    &--search {
+      top: $vr * 8;
     }
-    p {
-        font: $font-primary;
-        font-size: $vr * 2.25;
-        display: block;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-    }
-    .skip {
-        position: absolute;
-        top: 0;
-        left: -999px;
-        z-index: -99;
-        overflow: hidden;
-        transition: all .5s ease-in-out;
-        color: $white;
-        text-decoration: none;
-        &:focus {
-            left: 0;
-            height: auto;
-            padding: $vr;
-            margin: $vr 0 0 $vr;
-            width: auto;
-            z-index: 10;
-        }
-    }
-    .page-container {
-        flex: auto;
-        display: flex;
-        min-width: 0;
-        min-height: 100vh;
-        @include mq($bp-medium) {
-            margin-left: 12%;
-            margin-left: min(112px);
-        }
-        &--default {
-            margin-left: 0;
-        }
-    }
-    .page-scrim {
-        transform: scale(0);
-        transition: opacity 100ms linear,transform 0ms linear 100ms;
-        opacity: 0;
-        &--active {
-            background: rgba(30,30,28,.8);
-            position: absolute;
-            content: '';
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 6;
-            opacity: 1;
-            transform: scale(1);
-            transition: opacity 100ms linear;
-        }
-        &--search {
-            top: $vr * 8;
-        }
-    }
+  }
 }

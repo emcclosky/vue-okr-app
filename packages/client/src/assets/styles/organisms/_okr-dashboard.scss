@@ -1,174 +1,174 @@
 .okr-dashboard {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    ::-webkit-scrollbar {
-        width: 0px!important;
-        background: transparent; /* Chrome/Safari/Webkit */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    width: 0px !important;
+    background: transparent; /* Chrome/Safari/Webkit */
+  }
+  &__options {
+    background-color: $white;
+    border-radius: $vr / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+    padding: $vr * 6 $vr * 2 0 $vr * 2;
+    @include mq($bp-small) {
+      padding: $vr * 6 $vr * 4 0 $vr * 4;
     }
-    &__options {
-        background-color: $white;
-        border-radius: $vr /2;
+    @include mq($bp-medium) {
+      display: flex;
+    }
+    &--top {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      @include mq($bp-medium) {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
-        box-sizing: border-box;
-        box-shadow:  0 3px 8px 0 rgba(0,0,0,0.03);
-        padding:  $vr * 6 $vr * 2 0 $vr * 2;
-        @include mq($bp-small) {
-            padding: $vr * 6 $vr * 4 0 $vr * 4;
-        }
-        @include mq($bp-medium) {
-            display: flex;
-        }
-        &--top {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-sizing: border-box;
-            @include mq($bp-medium) {
-                display: flex;
-                justify-content: space-between;
-                flex-direction: row;
-            }
-        }
-        &--left {
-            text-align: center;
-            h2 {
-                margin: 0;
-                font-family: $font-secondary;
-                font-size: $vr * 4;
-                color: $font-color;
-            }
-            @include mq($bp-medium) {
-                text-align: left;
-            }
-        }
-        &--right {
-            display: flex;
-            align-items: center;
-            padding-top: $vr * 2;
-            justify-content: center;
-            @include mq($bp-medium) {
-                padding: 0;
-            }
-        }
+        flex-direction: row;
+      }
     }
-    &__timeframe-container {
-        display: flex;
-        border: 2px solid $primary-grey;
-        border-radius: 40px;
-        align-items: center;
-        padding: $vr / 2 $vr * 2;
-        max-height: $vr * 6;
-        button {
-            cursor: pointer;
-            background-color: transparent;
-            border-radius: 50%;
-            border: 2px solid $secondary-grey;
-            color: transparent;
-            height: $vr * 5;
-            width: $vr * 5;
-            padding: 0;
-            transition: all .2s ease-in-out;
-            &:hover {
-                background-color: $primary-grey;
-            }
-        }
-    }
-    &__timeframe {
-        text-align: center;
-        padding: 0 $vr * 2;
+    &--left {
+      text-align: center;
+      h2 {
+        margin: 0;
+        font-family: $font-secondary;
+        font-size: $vr * 4;
         color: $font-color;
-        p, h4 {
-            margin: 0;
-            letter-spacing: .5px;
-        }
-        p {
-            font-family: $font-primary;
-            font-size: $vr * 2;
-        }
-        h4 {
-           font-family: $font-secondary;
-           font-size: $vr * 2.5;
-        }
+      }
+      @include mq($bp-medium) {
+        text-align: left;
+      }
     }
-    &__add-button {
-        position: fixed;
-        bottom: $vr * 2;
-        right: $vr * 2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        @include mq($bp-medium) {
-            position: static;
-        }
+    &--right {
+      display: flex;
+      align-items: center;
+      padding-top: $vr * 2;
+      justify-content: center;
+      @include mq($bp-medium) {
+        padding: 0;
+      }
     }
-    &__okr-types {
-        display: flex;
-        overflow-x: scroll;
-        justify-content: center;
-        @include mq($bp-medium) {
-            justify-content: flex-start;
-        }
-        button {
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 1.5px;
-            border: none;
-            color: $secondary-font-color;
-            background-color: transparent;
-            width: auto;
-            position: relative;
-            padding: $vr * 1.5 0;
-            transition: all .25s ease-in-out;
-            bottom: 0;
-            cursor: pointer;
-            position: relative;
-            margin: $vr * 1.5 $vr $vr * 1.5 0;
-            min-width: 95px;
-            @include mq($bp-small) {
-                margin: $vr * 1.5  $vr * 3 $vr * 1.5 0;
-            }
-            @include mq($bp-medium) {
-                margin: 0 $vr * 3 $vr * 1.5 0;
-            }
-            &:last-child {
-                margin-right: 0;
-            }
-            &:after {
-                content: '';
-                position: absolute;
-                width: 0;
-                height: 3px;
-                bottom: 0;
-                left: 0;
-                transition: all .25s ease-in-out;
-            }
-           &.active, &:hover {
-                color: $primary-green;
-                &:after {
-                    width: 100%;
-                    background-color: $primary-green;
-                }
-            }
-        }
+  }
+  &__timeframe-container {
+    display: flex;
+    border: 2px solid $primary-grey;
+    border-radius: 40px;
+    align-items: center;
+    padding: $vr / 2 $vr * 2;
+    max-height: $vr * 6;
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      border-radius: 50%;
+      border: 2px solid $secondary-grey;
+      color: transparent;
+      height: $vr * 5;
+      width: $vr * 5;
+      padding: 0;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: $primary-grey;
+      }
     }
-    &__cards {
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        background-color: $white;
-        margin: $vr * 2;
-        padding: $vr * 2;
-        border-radius: $vr /2;
-        &:not(:last-child){
-            padding-bottom: $vr * 4;
-        }
+  }
+  &__timeframe {
+    text-align: center;
+    padding: 0 $vr * 2;
+    color: $font-color;
+    p,
+    h4 {
+      margin: 0;
+      letter-spacing: 0.5px;
     }
-    // &__card-container {
-    //     box-sizing: border-box;
-    //    &:not(:last-child){
-    //        padding-bottom: $vr * 4;
-    //    }
-    // }
+    p {
+      font-family: $font-primary;
+      font-size: $vr * 2;
+    }
+    h4 {
+      font-family: $font-secondary;
+      font-size: $vr * 2.5;
+    }
+  }
+  &__add-button {
+    position: fixed;
+    bottom: $vr * 2;
+    right: $vr * 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include mq($bp-medium) {
+      position: static;
+    }
+  }
+  &__okr-types {
+    display: flex;
+    overflow-x: scroll;
+    justify-content: center;
+    @include mq($bp-medium) {
+      justify-content: flex-start;
+    }
+    button {
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      border: none;
+      color: $secondary-font-color;
+      background-color: transparent;
+      width: auto;
+      position: relative;
+      padding: $vr * 1.5 0;
+      transition: all 0.25s ease-in-out;
+      bottom: 0;
+      cursor: pointer;
+      position: relative;
+      margin: $vr * 1.5 $vr $vr * 1.5 0;
+      min-width: 95px;
+      @include mq($bp-small) {
+        margin: $vr * 1.5 $vr * 3 $vr * 1.5 0;
+      }
+      @include mq($bp-medium) {
+        margin: $vr * 1.5 $vr * 3 0 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        left: 0;
+        transition: all 0.25s ease-in-out;
+      }
+      &.active,
+      &:hover {
+        color: $primary-green;
+        &:after {
+          width: 100%;
+          background-color: $primary-green;
+        }
+      }
+    }
+  }
+  &__cards {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: $white;
+    margin: $vr * 2;
+    padding: $vr * 2;
+    border-radius: $vr / 2;
+    &:not(:last-child) {
+      padding-bottom: $vr * 4;
+    }
+  }
+  &__cards-option {
+    @include font-primary-semibold;
+    font-family: $font-secondary;
+  }
 }

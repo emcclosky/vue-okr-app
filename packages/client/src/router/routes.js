@@ -1,4 +1,4 @@
-import router from '.';
+import router from './';
 import store from '../store';
 
 export default [
@@ -18,12 +18,17 @@ export default [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue'),
+    beforeEnter: (routeTo, routeFrom, next) => {
+      store.dispatch('validate').then((loggedIn) => {
+        loggedIn ? router.push('/okrs') : next();
+      });
+    }
 	},
 	{
 		path: '/performance',
 		name: 'Performance',
-    component: () => import(/* webpackChunkName: "Login" */ '../views/Placeholder.vue'),
+    component: () => import(/* webpackChunkName: "Performance" */ '../views/Placeholder.vue'),
     meta: {
       authRequired: true,
     }
@@ -31,7 +36,7 @@ export default [
 	{
 		path: '/settings',
 		name: 'Settings',
-    component: () => import(/* webpackChunkName: "Login" */ '../views/Placeholder.vue'),
+    component: () => import(/* webpackChunkName: "Settings" */ '../views/Settings.vue'),
     meta: {
       authRequired: true,
     }
@@ -39,7 +44,7 @@ export default [
 	{
 		path: '/tasks',
 		name: 'Tasks',
-    component: () => import(/* webpackChunkName: "Login" */ '../views/Placeholder.vue'),
+    component: () => import(/* webpackChunkName: "Tasks" */ '../views/Placeholder.vue'),
     meta: {
       authRequired: true,
     }
@@ -47,7 +52,12 @@ export default [
   {
     path: '/signup',
     name: 'Signup',
-    component: () => import(/* webpackChunkName: "Signup" */ '../views/Signup.vue')
+    component: () => import(/* webpackChunkName: "Signup" */ '../views/Signup.vue'),
+    beforeEnter: (routeTo, routeFrom, next) => {
+      store.dispatch('validate').then((loggedIn) => {
+        loggedIn ? router.push('/okrs') : next();
+      });
+    }
   },
   {
     path: '/password-reset/:token',
@@ -75,7 +85,10 @@ export default [
   {
     path: '/okrs/okr',
     name: 'Okr',
-    component: () => import(/* webpackChunkName: "Signup" */ '../views/Okr.vue'),
+    component: () => import('../views/Okr.vue'),
+    meta: {
+      authRequired: true,
+    },
     children: [
       {
         path: '/okrs/okr/new',
@@ -105,7 +118,7 @@ export default [
       authRequired: true,
     },
     beforeEnter: (routeTo, routeFrom, next) => {
-      if(store.state.okrs.allOkrData.length === 0 ) {
+      if(store.state.okrs.allOkrData.length === 0) {
         store.dispatch('getOkrs');
         next();
       } else {
@@ -117,11 +130,11 @@ export default [
     path: '/login-success',
     name: 'LoginSuccess',
     beforeEnter: (routeTo, routeFrom, next) => {
-      console.log('here')
       if(routeTo.query.authorized) {
         store.dispatch('setAuthorized', true);
-        store.dispatch('setUserData', routeTo.query);
-        next({ path:'/okrs' });
+        store.dispatch('setUserData', routeTo.query).then(() => {
+          next({ name:'Okrs' });
+        });
       }
     }
   },

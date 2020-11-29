@@ -22,7 +22,7 @@
                         <button class="button button--circle button--grey" type="button">
                             <OptionsIcon />
                         </button>
-                        <router-link class="button button--circle button--green okr-dashboard__add-button" to="/okrs/okr/new" tag="button">
+                        <router-link class="button button--circle button--green okr-dashboard__add-button" :class="{'button--pulse': !allOkrData.length}" to="/okrs/okr/new" tag="button">
                             <AddIcon />
                         </router-link>
                     </div>
@@ -36,6 +36,9 @@
                 </div>
             </div>
             <div class="okr-dashboard__cards">
+                <div class="okr-dashboard__cards-option">
+                    <h3>OKRs<span v-if="!allOkrData.length">: 0</span></h3>
+                </div>
                 <div class="okr-dashboard__card-container" v-for="okr in allOkrData" :key="'objective-'+okr.id" :data-id="okr.id" >
                     <OkrCard :data="okr"/>
                 </div>

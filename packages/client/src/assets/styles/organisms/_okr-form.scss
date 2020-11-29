@@ -1,57 +1,69 @@
 .okr-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__container {
+    background-color: $white;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    padding: $vr * 6 $vr * 4;
+    margin: $vr * 6 auto;
+    width: 100%;
+    @include mq($bp-medium) {
+      margin: 0 $vr * 2;
+      padding: $vr * 8 $vr * 6;
+    }
+  }
+  h2 {
+    font-family: $font-primary;
+    font-weight: 500;
+    position: relative;
+  }
+  &__form {
+    padding: 0 $vr * 2;
+    font-family: $font-primary;
+    font-size: $vr * 2.25;
+    color: $font-color;
+  }
+  h3 {
+    @include font-primary-med;
+    font-size: $vr * 2.5;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  input {
+    border-radius: $vr / 2;
+    width: 100%;
+    height: $vr * 4;
+    margin: $vr 0 $vr * 2.5 0;
+  }
+  // &__button-group {
+  //   button {
+  //     margin: 0;
+  //     &:first-of-type {
+  //       margin-bottom: $vr * 1.5;
+  // 		}
+  // 		@include mq($bp-medium) {
+
+  // 		}
+  //   }
+  // }
+  &__add-more-button {
+    position: relative;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: $vr * 2;
+    transition: all 0.25s ease-in-out;
+    display: flex;
     align-items: center;
-    &__container {
-        background-color: $white;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        padding: $vr * 6 $vr * 4;
-        margin: 0 $vr * 2;
-        width: 100%;
-        @include mq($bp-medium) {
-            padding: $vr * 8 $vr * 6;
-        }
+    .add-icon {
+      margin-right: $vr / 2;
     }
-    h2 {
-        font-family: $font-primary;
-        font-weight: 500;
-        position: relative;
+    &:hover {
+      color: $primary-green;
+      fill: $primary-green;
     }
-    &__form {
-        padding: 0 $vr * 2;
-        font-family: $font-primary;
-        font-size: $vr * 2.25;
-        color: $font-color;
-    }
-    h3 {
-        font-weight: 500;
-        font-size: $vr * 2.5;
-        &:first-child {
-            margin-top: 0;
-        }
-    }
-    input {
-        border-radius: $vr / 2;
-        width: 100%;
-        height: $vr * 4;
-        margin: $vr 0 $vr * 2.5 0;
-    }
-    &__add-more-button {
-        position: relative;
-        cursor: pointer;
-        font-weight: 500;
-        font-size: $vr * 2;
-        transition: all .25s ease-in-out;
-        display: flex;
-        align-items: center;
-        .add-icon {
-            margin-right: $vr / 2;
-        }
-        &:hover {
-            color: $primary-green;
-            fill: $primary-green;
-        }
-    }
+  }
 }

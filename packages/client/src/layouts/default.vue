@@ -1,36 +1,37 @@
 <template>
-	<div>
-		<a href="/#main" class="skip">Skip to Main Content</a>
-		<header>
-			<NavBar :authorized="authorized" />
-			{{ authorized }}
+	<div class="page-container" :class="{'page-container--default': !authorized}">
+		<header :class="{'default': !authorized}">
+			<a href="/#main" class="skip">Skip to Main Content</a>
+			<NavBar :authorized="authorized" :menuStatus="menuOpen" :scrollPos="scrollPos" />
 		</header>
 		<main>
+			<HeroStandard v-if="!authorized && routeName === 'Home'" />
 			<Sidebar v-if="authorized" />
-			<div class="page-container" :class="{'page-container--default': !authorized}">
 				<div class="page-scrim" :class="setScrimClass()"></div>
 				<slot/>
-			</div>
 		</main>
-		<!-- <Footer /> -->
 	</div>
+	<!-- <Footer /> -->
 </template>
 
 <script>
 import NavBar from '@/components/global/NavBar';
 import Sidebar from '@/components/global/Sidebar';
+import HeroStandard from '@/components/heroes/HeroStandard';
 import getClientWidth from '@/mixins/getClientWidth.js';
 import { mapState, mapGetters } from 'vuex'
 
 export default {
 	components: {
 		NavBar,
-		Sidebar
+		Sidebar,
+		HeroStandard
 	},
 	mixins: [getClientWidth],
 	data() {
 		return {
 			scrollPos: null,
+			routeName: null
 		}
 	},
 	computed: {
@@ -51,6 +52,9 @@ export default {
 		dialogOpen: function() {
 			this.setFixedClass(this.dialogOpen);
 			this.closeDropdowns();
+		},
+		$route() {
+				this.routeName = this.$route.name;
 		}
 	},
 	methods: {
@@ -66,7 +70,7 @@ export default {
 				document.body.classList.remove('fixed');
 		},
 		setScrimClass() {
-			if(this.menuOpen || this.dialogOpen)
+			if(this.menuOpen && this.authorized || this.dialogOpen)
 				return 'page-scrim--active';
 			else if(this.searchOpen)
 				return 'page-scrim--active page-scrim--search';

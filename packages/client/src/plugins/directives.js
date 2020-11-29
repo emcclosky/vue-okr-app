@@ -1,35 +1,28 @@
-let handleOutsideClick;
-
-// Vue.directive('click-outside', {
 export default {
-  // beforeMount(el, binding, vnode) {
-  //   handleOutsideClick = (e) => {
-  //     e.stopPropagation();
-  //     const { handler, exclude } = binding.value;
-  //     console.log('vnode',vnode)
-  //     console.log(binding)
-  //     let clickedOnExcludedEl = false;
-  //     exclude.forEach(refName => {
-  //       if (!clickedOnExcludedEl) {
-  //         if(vnode.context.$refs[refName]) {
-  //           const excludedEl = vnode.context.$refs[refName];
-  //           clickedOnExcludedEl = excludedEl.contains(e.target);
-  //         }
-  //       }
-  //     });
+  beforeMount(el, binding, vnode) {
+    el.handleOutsideClick = (e) => {
+      e.stopPropagation();
+      const { handler, exclude } = binding.value;
+      let clickedOnExcludedEl = false;
+      exclude.forEach(refName => {
+        if (!clickedOnExcludedEl) {
+          if(binding.instance.$refs[refName]) {
+            const excludedEl = binding.instance.$refs[refName];
+            clickedOnExcludedEl = excludedEl.contains(e.target);
+          }
+        }
+      });
 
-  //     if (!el.contains(e.target) && !clickedOnExcludedEl) {
-  //       vnode.context[handler](e);
-  //     }
-  //   }
-  //   document.addEventListener('click', handleOutsideClick);
-  //   document.addEventListener('touchstart', handleOutsideClick);
-  // },
+      if (!el.contains(e.target) && !clickedOnExcludedEl) {
+        binding.instance[handler](e);
+      }
+    }
+    document.addEventListener('click', el.handleOutsideClick);
+    document.addEventListener('touchstart', el.handleOutsideClick);
+  },
 
-  // unbind () {
-  //   document.removeEventListener('click', handleOutsideClick);
-  //   document.removeEventListener('touchstart', handleOutsideClick);
-  // }
+  unmounted(el) {
+    document.removeEventListener('click', el.handleOutsideClick);
+    document.removeEventListener('touchstart', el.handleOutsideClick);
+  }
 }
-
-// });

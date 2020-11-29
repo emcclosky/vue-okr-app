@@ -49,15 +49,16 @@ export default {
 				console.log('error from getOkr action', err);
 			}
 		},
-		async createOkr({commit}, payload){
+		async createOkr({commit, dispatch}, payload){
 			try {
 				const axiosParams = {
 					url: `http://127.0.0.1:8000/okrs/okr`,
 					method: 'post',
 					payload
 				};
-
 				await axiosHandler(axiosParams);
+				dispatch('getOkrs');
+
 				router.push('/okrs');
 			} catch (err) {
 				console.log('error from createOkr action', err);
@@ -78,7 +79,7 @@ export default {
 			}
 		},
 		async editOkr({commit}, payload){
-            const okrId = payload.id;
+      const okrId = payload.id;
 			try {
 				const axiosParams = {
 					url: `http://127.0.0.1:8000/okrs/okr/${okrId}`,

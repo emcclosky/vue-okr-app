@@ -1,15 +1,6 @@
-@import
-'quarks/body',
-'quarks/html',
-'quarks/img',
-'quarks/main',
-'quarks/hr'
-;
+@import "quarks/body", "quarks/html", "quarks/img", "quarks/main", "quarks/hr",
+  "quarks/header";
 
-@import
-'layout/component'
-;
+@import "layout/component";
 
-@import
-'atoms/button'
-;
+@import "atoms/button", "atoms/checkbox";

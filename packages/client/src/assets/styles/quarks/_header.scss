@@ -1,0 +1,8 @@
+header {
+  &.default {
+    padding-top: $vr * 5;
+    @include mq($bp-medium) {
+      padding-top: $vr * 2;
+    }
+  }
+}

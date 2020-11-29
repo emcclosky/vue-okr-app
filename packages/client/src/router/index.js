@@ -9,15 +9,15 @@ const router = createRouter({
 });
 
 // // Before each route evaluates...
-router.beforeEach((routeTo, routeFrom, next) => {
-
+router.beforeResolve((routeTo, routeFrom, next) => {
+  store.dispatch('menuOpen', false);
   // Check if auth is required on this route
   // (including nested routes).
   const authRequired = routeTo.matched.some((route) => route.meta.authRequired)
   // If auth isn't required for the route, just continue.
-  if (!authRequired)
+  if (!authRequired) {
     return next();
-  else {
+  } else {
     return store.dispatch('validate').then((loggedIn) => {
       loggedIn ? next() : redirectToLogin();
     });

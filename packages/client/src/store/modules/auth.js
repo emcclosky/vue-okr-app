@@ -16,12 +16,14 @@ export default {
 		}
   },
 	actions: {
-		setUserData({commit}, data){
-			console.log('session Data', data)
-			for(let key in data) {
-				sessionStorage.setItem(key, data[key]);
+		async	setUserData({commit}, data){
+			if(localStorage.length <= 1) {
+				for(let key in data) {
+					localStorage.setItem(key, data[key]);
+				}
 			}
-			commit('SET_USER_DATA', sessionStorage);
+			commit('SET_USER_DATA', localStorage);
+			return Promise.resolve('success');
 		},
 		setAuthorized({commit}, data){
 			commit('SET_AUTHORIZED', data);
@@ -51,12 +53,12 @@ export default {
 				};
 				const response = await axiosHandler(axiosParams);
 				const userData = response.data;
-				dispatch('setUserData', userData)
-				commit('SET_AUTHORIZED', true);
+				this.dispatch('setUserData', userData)
+				this.dispatch('setAuthorized', true);
 				router.push('/okrs');
 			} catch (err) {
 				if(err.response && err.response.status === 401)
-					commit('SET_AUTHORIZED', false);
+					this.dispatch('setAuthorized', false);
 				throw new Error(err)
 			}
 		},
@@ -68,9 +70,9 @@ export default {
 				};
 
 				await axiosHandler(axiosParams);
-				sessionStorage.clear();
+				localStorage.clear();
 				this.dispatch('setUserData', null);
-				commit('SET_AUTHORIZED', false);
+				this.dispatch('setAuthorized', false);
 				router.push('/');
 			} catch (err) {
 				if(err.response &&  err.response.status === 401)
@@ -89,7 +91,7 @@ export default {
 				const response = await axiosHandler(axiosParams);
 				return response;
 			} catch (err) {
-				console.log('err from store login', err);
+				console.error('err from store login', err);
 				return err;
 			}
 		},
@@ -103,7 +105,7 @@ export default {
 
 				return await axiosHandler(axiosParams);
 			} catch (err) {
-				console.log('err from store login', err);
+				console.error('err from store login', err);
 				return err;
 			}
 		},
@@ -117,21 +119,21 @@ export default {
 
 				return await axiosHandler(axiosParams);
 			} catch (err) {
-				console.log('err from store login', err);
+				console.error('err from store login', err);
 				return err;
 			}
     },
 		// Validates the current user and removes data from session storage if
 		//expired
 		validate({ commit, state }) {
-			const authorized = sessionStorage.getItem('authorized');
-			const expiration = sessionStorage.getItem('expiration');
+			const authorized = localStorage.getItem('authorized');
+			const expiration = localStorage.getItem('expiration');
 			const currentDate = new Date().toISOString();
-			if(authorized && expiration >= currentDate) {
+			if(authorized === 'true' && expiration >= currentDate) {
 				commit('SET_AUTHORIZED', true);
 				return true;
 			} else {
-				sessionStorage.clear();
+				// localStorage.clear();
 				commit('SET_AUTHORIZED', false);
 				return false;
 			}

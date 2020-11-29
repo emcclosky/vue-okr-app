@@ -1,17 +1,17 @@
 <template>
     <section class="okr-form component component--full-width">
         <div class="okr-form__container">
-            <form name="okr-form__form" @submit.prevent="handleSubmit">
+            <form class="okr-form__form" @submit.prevent="handleSubmit">
                 <h3>Objective</h3>
                 <div class="okr-form__form-item okr__form-item--objective">
-                    <label for="">Objective</label>
+                    <label for="">Objective Name</label>
                     <input type="text" v-model="submissionData.objective">
                 </div>
                 <hr />
                 <h3>Key Results</h3>
                 <div v-for="(kr, index) in submissionData.keyResults" :key="'KR-'+index">
                     <div class="okr-form__form-item okr__form-item--key-result">
-                        <label for="">Key Result</label>
+                        <label for="">Key Result Name</label>
                         <input type="text" v-model="kr.result">
                         <label for="">Completion Rate</label>
                         <input class="" type="number" min="0" max="100" v-model.number="kr.completion_rate">
@@ -21,8 +21,10 @@
                     <AddIcon /> Add Key Result
                 </span>
                 <hr />
-                <button class="button button--green" type="submit">Update</button>
-                <button class="button button--border" type="button" @click="$router.push('/okrs')">Cancel</button>
+                <div class="okr-form__button-group">
+                    <button class="button button--green" type="submit">Update</button>
+                    <button class="button button--border" type="button" @click="$router.push('/okrs')">Cancel</button>
+                </div>
             </form>
         </div>
     </section>

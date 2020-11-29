@@ -5,7 +5,7 @@
     "lerna": "^3.22.1"
   },
   "scripts": {
-    "bootstrap": "learna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap --hoist",
     "test": "jest"
   }
 }

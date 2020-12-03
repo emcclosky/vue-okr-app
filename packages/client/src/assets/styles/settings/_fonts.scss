@@ -1,27 +1,28 @@
-$font-primary: 'Source Sans Pro', sans-serif;
-$font-secondary: 'Open Sans', sans-serif;
+$font-primary: "Source Sans Pro", sans-serif;
+$font-secondary: "Open Sans", sans-serif;
+$font-logo: "Mulish", sans-serif;
 
 @mixin font-primary-reg {
-    font-family: $font-primary;
-    font-weight: 400;
+  font-family: $font-primary;
+  font-weight: 400;
 }
 
 @mixin font-primary-med {
-    font-family: $font-primary;
-    font-weight: 500;
+  font-family: $font-primary;
+  font-weight: 500;
 }
 
 @mixin font-primary-semibold {
-    font-family: $font-primary;
-    font-weight: 600;
+  font-family: $font-primary;
+  font-weight: 600;
 }
 
 @mixin font-secondary-reg {
-    font-family: $font-secondary;
-    font-weight: 400;
+  font-family: $font-secondary;
+  font-weight: 400;
 }
 
 @mixin font-secondary-semibold {
-    font-family: $font-secondary;
-    font-weight: 600;
+  font-family: $font-secondary;
+  font-weight: 600;
 }

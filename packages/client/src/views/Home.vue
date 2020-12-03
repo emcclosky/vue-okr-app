@@ -1,16 +1,22 @@
 <template>
   <div class="home">
-    <About />
+    <TextBlock :data="aboutContent" :home="true" v-if="aboutContent" />
   </div>
 </template>
 
 <script>
-import About from '@/components/molecules/About';
+import TextBlock from '@/components/molecules/TextBlock';
+import aboutContent from '@/content/about-section.json';
 
 export default {
   name: 'Home',
   components: {
-    About
+    TextBlock
+  },
+  data() {
+    return {
+      aboutContent: aboutContent
+    }
   }
 }
 </script>

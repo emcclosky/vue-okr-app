@@ -1,0 +1,88 @@
+.text-block {
+  background-color: $white;
+  box-sizing: border-box;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    @include mq($bp-medium) {
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+  &__features {
+    font-family: $font-primary;
+    display: grid;
+    width: 100%;
+    margin-top: $vr * 4.5;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 48px;
+    grid-row-gap: $vr * 3;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+  }
+  &__text-content {
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    align-items: flex-start;
+    margin-bottom: $vr * 4;
+    @include mq($bp-small) {
+      text-align: center;
+    }
+    @include mq($bp-medium) {
+      width: 52%;
+      margin-bottom: $vr * 2;
+      margin-right: $vr * 4.5;
+      text-align: left;
+    }
+    @include mq($bp-large) {
+      width: 48%;
+      margin-bottom: $vr * 4;
+    }
+    h2 {
+      @include font-primary-semibold;
+      font-size: $vr * 3;
+      margin-bottom: $vr * 2;
+      margin-top: 0;
+      line-height: $vr * 3;
+      @include mq($bp-small) {
+        font-size: $vr * 4.5;
+        margin-bottom: $vr * 4;
+        line-height: $vr * 4.5;
+      }
+      @include mq($bp-medium) {
+        font-size: $vr * 5.5;
+        line-height: $vr * 5;
+      }
+    }
+    p {
+      line-height: $vr * 3.5;
+      font-size: $vr * 2.5;
+      @include font-primary-reg;
+      @include mq($bp-small) {
+        font-size: $vr * 3;
+      }
+      @include mq($bp-medium) {
+        font-size: $vr * 2.5;
+      }
+    }
+  }
+  &__image {
+    display: inline-block;
+    @include mq($bp-small) {
+      margin: 0 auto;
+    }
+    @include mq($bp-large) {
+      max-width: 52%;
+    }
+    img {
+      object-fit: cover;
+      height: 400px;
+      @include mq($bp-large) {
+        height: 500px;
+      }
+    }
+    // filter: drop-shadow(0px 60px 60px rgba(134, 181, 227, 0.3));
+  }
+}

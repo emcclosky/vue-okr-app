@@ -1,7 +1,7 @@
-@mixin mq ($breakpoint) {
-    @media only screen and (min-width:$breakpoint) {
-        @content;
-    }
+@mixin mq($breakpoint) {
+  @media only screen and (min-width: $breakpoint) {
+    @content;
+  }
 }
 
 $bp-small: pxToEm(480);

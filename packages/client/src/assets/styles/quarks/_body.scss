@@ -31,6 +31,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     color: $accent-blue;
+    transition: all 150ms ease-in-out;
     &:hover {
       color: darken($color: $accent-blue, $amount: 10%);
     }
@@ -49,7 +50,7 @@ body {
     }
   }
   p {
-    font: $font-primary;
+    font-family: $font-primary;
     font-size: $vr * 2.25;
     display: block;
     margin-block-start: 1em;
@@ -76,10 +77,13 @@ body {
     }
   }
   .page-container {
-    flex: auto;
-    display: flex;
-    min-width: 0;
-    min-height: 100vh;
+    overflow-x: hidden;
+    &--logged-in {
+      flex: auto;
+      display: flex;
+      min-width: 0;
+    }
+    // min-height: 100vh;
   }
   .page-scrim {
     transform: scale(0);

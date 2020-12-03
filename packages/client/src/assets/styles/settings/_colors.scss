@@ -2,13 +2,14 @@ $white: #ffffff;
 $warning: #d93025;
 $dark-grey: #5b5b5b;
 $blue-grey: #eceff1;
+$background-light: #f5faff;
 $black: #000;
 
 $primary-blue: #02175e;
 $primary-green: #13ce95;
 $primary-grey: #f3f3f2;
 $secondary-grey: #ebebeb;
-$accent-grey: #d3d3d3;
+$accent-grey: #b7b5bf;
 $accent-blue: #5468ff;
 $accent-orange: #ff8d64;
 $font-color: #1d1b15;
@@ -16,7 +17,7 @@ $secondary-font-color: #69809e;
 $tertiary-grey: #5f6368;
 
 $alpha-blue-15: rgba(177, 204, 250, 0.15);
-$alpha-periwinkle-90 : rgba(90,94,154,.9);
+$alpha-periwinkle-90: rgba(90, 94, 154, 0.9);
 
 $alpha-black-15: rgba(0, 0, 0, 0.15);
 $alpha-black-30: rgba(0, 0, 0, 0.3);
@@ -24,5 +25,15 @@ $alpha-black-40: rgba(0, 0, 0, 0.4);
 $alpha-black-60: rgba(0, 0, 0, 0.6);
 $alpha-black-80: rgba(0, 0, 0, 0.8);
 
-$gradient-light: linear-gradient(-153.4394deg, $alpha-black-15 0%,  $alpha-black-40 25%, $alpha-black-80 100%);
-$gradient-dark: linear-gradient(-153.4394deg, $alpha-black-30 0%,  $alpha-black-40 25%, $black 100%);
+$gradient-light: linear-gradient(
+  -153.4394deg,
+  $alpha-black-15 0%,
+  $alpha-black-40 25%,
+  $alpha-black-80 100%
+);
+$gradient-dark: linear-gradient(
+  -153.4394deg,
+  $alpha-black-30 0%,
+  $alpha-black-40 25%,
+  $black 100%
+);

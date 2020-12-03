@@ -1,0 +1,51 @@
+.global-footer {
+  position: relative;
+  box-sizing: border-box;
+  background-color: $white;
+  &:before {
+    width: 150%;
+    height: 125%;
+    // background-color: $blue-grey;
+    background-image: linear-gradient(180deg, $background-light, $white);
+    border-radius: 100%;
+    top: -25%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    content: "";
+  }
+  &__container {
+    margin: 0 auto;
+    padding: 0;
+    width: 80%;
+    position: relative;
+    z-index: 2;
+    max-width: 120rem;
+  }
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__site-credit {
+    @include font-primary-reg;
+    font-size: $vr * 1.75;
+    color: $dark-grey;
+  }
+  &__social-bar {
+    display: flex;
+    align-items: center;
+    a {
+      margin-left: $vr;
+      svg {
+        transition: inherit;
+        fill: $accent-grey;
+      }
+      &:hover {
+        svg {
+          fill: darken($color: $accent-grey, $amount: 10%);
+        }
+      }
+    }
+  }
+}

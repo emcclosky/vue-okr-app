@@ -5,6 +5,8 @@ module.exports = {
         const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
         types.forEach(type => addSassResource(config.module.rule('scss').oneOf(type)));
         config.plugins.delete('prefetch');
+        config.resolve.alias
+            .set('~', path.resolve(__dirname, './'));
     },
     devServer: {
         proxy:

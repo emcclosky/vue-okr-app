@@ -7,7 +7,7 @@
   text-decoration: none;
   text-transform: uppercase;
   margin: 0 $vr;
-  font-weight: 500;
+  font-weight: 400;
   outline: 0;
   border: 0;
   cursor: pointer;
@@ -110,7 +110,7 @@
       display: inline-block;
       vertical-align: middle;
       margin-right: $vr * 1.5;
-      content: url(../images/google__G__Logo.png);
+      content: url(~@/assets/images/google__G__Logo.png);
       position: relative;
     }
     &:hover {
@@ -158,6 +158,17 @@
           margin: 0 $vr 0 0;
         }
       }
+    }
+  }
+}
+
+.hero-standard {
+  button {
+    font-weight: 600;
+    padding: $vr * 2.5 $vr * 4;
+    margin: 0;
+    @include mq($bp-medium) {
+      min-width: 50%;
     }
   }
 }

@@ -1,5 +1,10 @@
 <template>
 	<nav class="nav-bar" role="navigation" :class="{'nav-bar--default': !authorized}">
+		<div v-if="!authorized" class="nav-bar__logo">
+			<router-link to="/">
+				OKR
+			</router-link>
+		</div>
 		<div v-if="authorized" class="nav-bar__options">
 			<form class="nav-bar__search-form" :class="{'nav-bar__search-form--active': searchActive}" action="" v-click-outside="{exclude: ['search-button'], handler: 'closeSearch' }" role="search">
 				<input class="nav-bar__search-input" type="text" placeholder="Search Here...">
@@ -16,7 +21,7 @@
 					</li>
 					<li class="nav-bar__link">
 						<a>
-								<NotificationIcon />
+							<NotificationIcon />
 						</a>
 					</li>
 					<li class="nav-bar__link">
@@ -39,12 +44,6 @@
 				</li>
 				<span class="nav-bar__link-group" :class="{'nav-bar__link-group--active': menuOpen}">
 					<button class="nav-bar__close-button" type="button" @click="activateMenu"><CloseIcon /></button>
-					<li class="nav-bar__link">
-						<router-link to="/">Home</router-link>
-					</li>
-					<!-- <li class="nav-bar__link">
-						<router-link to="/features">Features</router-link>
-					</li> -->
 					<li class="nav-bar__link">
 						<router-link to="/login">Log In</router-link>
 					</li>

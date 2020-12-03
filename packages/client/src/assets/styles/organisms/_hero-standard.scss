@@ -1,20 +1,54 @@
 .hero-standard {
-  position: relative;
-  height: fit-content;
-  width: 100%;
-  text-align: center;
   background-color: $white;
-  padding: $vr * 12 $vr * 2.5 $vr * 7 $vr * 2.5;
-  @include mq($bp-small) {
-    padding: $vr * 14 11.25vw $vr * 7.5 11.25vw;
+  &__container {
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #d6e4ff;
+    background-image: linear-gradient(
+      0deg,
+      rgb(214, 228, 255) -20%,
+      rgb(255, 255, 255) 85%,
+      rgb(255, 255, 255) 100%
+    );
+    padding: $vr * 12 0 0 0;
+    @include mq($bp-small) {
+      padding: $vr * 14 0 0 0;
+    }
+    @include mq($bp-medium) {
+      padding: $vr * 18 0 0 0;
+    }
   }
-  @include mq($bp-medium) {
-    padding: $vr * 14 11.25vw $vr * 7.5 11.25vw;
+  &__background-container {
+    @include mq($bp-small) {
+      max-height: 200px;
+    }
+    @include mq($bp-medium) {
+      max-height: 200px;
+    }
+    @include mq($bp-large) {
+      max-height: 245px;
+    }
+  }
+  &__text-content {
+    padding: 0 $vr * 2.5 $vr * 7 $vr * 2;
+    @include mq($bp-small) {
+      padding: 0 11.25vw 0 11.25vw;
+    }
+    @include mq($bp-medium) {
+      padding: 0 11.25vw 0 11.25vw;
+    }
   }
   &__button-container {
     padding-top: $vr * 2;
     button {
       margin-left: 0;
+    }
+    @include mq($bp-medium) {
+      max-width: 50%;
+      margin: 0 auto;
     }
   }
   h1 {
@@ -22,6 +56,7 @@
     font-size: $vr * 4.5;
     line-height: $vr * 4.5;
     @include mq($bp-medium) {
+      font-size: $vr * 7 !important;
     }
   }
   p {

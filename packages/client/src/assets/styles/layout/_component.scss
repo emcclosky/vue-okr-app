@@ -1,33 +1,54 @@
 .component {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    padding: $vr * 6  $vr * 3;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  padding: $vr * 6 $vr * 3;
+  @include mq($bp-small) {
+    padding: $vr * 6 $vr * 12;
+  }
+  @include mq($bp-medium) {
+    padding: $vr * 8 10.5vw;
+  }
+  &--border-top {
+    border-top: 1px solid #e6ecf8;
+  }
+  &--gutter {
+    padding: $vr * 6 $vr * 4;
     @include mq($bp-small) {
-        padding: $vr * 6 $vr * 12;
+      padding: $vr * 6;
     }
     @include mq($bp-medium) {
-        padding: $vr * 8 10.5vw;
+      padding: $vr * 8 $vr * 7;
     }
-    &--border-top {
-        border-top: 1px solid #E6ECF8;
+  }
+  &--full-width {
+    padding: $vr * 6 0;
+    @include mq($bp-small) {
+      padding: $vr * 6 0;
     }
-    &--full-width {
-        padding: $vr * 6 0;
-        @include mq($bp-small) {
-            padding: $vr * 6 0;
-        }
-        @include mq($bp-medium) {
-            padding: $vr * 8 0;
-        }
+    @include mq($bp-medium) {
+      padding: $vr * 8 0;
     }
-    &--narrow {
-        padding: $vr * 6  $vr * 3;
-        @include mq($bp-small) {
-            padding: $vr * 6 $vr * 12;
-        }
-        @include mq($bp-medium) {
-            padding: $vr * 8 18.5vw;
-        }
+  }
+  &--narrow {
+    padding: $vr * 6 $vr * 3;
+    @include mq($bp-small) {
+      padding: $vr * 6 $vr * 12;
     }
+    @include mq($bp-medium) {
+      padding: $vr * 8 18.5vw;
+    }
+  }
+  &--no-top {
+    padding-top: 0;
+  }
+  &--double-bottom {
+    padding-bottom: $vr * 12;
+    @include mq($bp-small) {
+      padding-bottom: $vr * 12;
+    }
+    @include mq($bp-medium) {
+      padding-bottom: $vr * 16;
+    }
+  }
 }

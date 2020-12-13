@@ -1,12 +1,12 @@
 .global-footer {
   position: relative;
   box-sizing: border-box;
-  background-color: $white;
+  background-color: $primary-white;
   &:before {
     width: 150%;
     height: 125%;
-    // background-color: $blue-grey;
-    background-image: linear-gradient(180deg, $background-light, $white);
+    // background-color: $primary-background;
+    background-image: linear-gradient(180deg, $blue-grey, $primary-white);
     border-radius: 100%;
     top: -25%;
     left: 50%;

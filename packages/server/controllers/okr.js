@@ -9,10 +9,18 @@ const getOkrs = (logger) => async (req, res) => {
         const selectOkrs = `
             SELECT ob.*, json_agg(kr.*) AS key_results
             FROM objectives AS ob
-            INNER JOIN key_results AS kr ON (ob.id=kr.objective_id)
-            WHERE ob.user_id = $1 group by ob.id;
+            LEFT OUTER JOIN key_results AS kr ON (ob.id=kr.objective_id)
+            WHERE ob.user_id = $1
+            GROUP BY ob.id;
         `;
-        const okrs = await query(selectOkrs, [userId]);
+        let okrs = await query(selectOkrs, [userId]);
+        okrs.forEach(okr => {
+            const indexNull = okr.key_results.indexOf(null);
+            if(indexNull > -1) {
+                okr.key_results.splice(indexNull, 1);
+            }
+        })
+
         return res.status(200).json(okrs);
     } catch(err){
         logger.error(err);
@@ -26,7 +34,8 @@ const getOkr = (logger) => async (req, res) => {
         SELECT ob.*, json_agg(kr.*) AS key_results
         FROM objectives AS ob
         INNER JOIN key_results AS kr ON (ob.id=kr.objective_id)
-        WHERE ob.id = ${okrId} GROUP BY ob.id;
+        WHERE ob.id = ${okrId}
+        GROUP BY ob.id;
     `
     try {
         const okr = await query(selectOkr);
@@ -60,15 +69,17 @@ const postOkr = (logger) => async (req, res) => {
             user_id,
         ]);
 
-        const { valuesPlaceholders, actualValues } = parseKeyResultValues(keyResults, objectiveId[0].id);
+        if(keyResults.length > 0) {
+            const { valuesPlaceholders, actualValues } = parseKeyResultValues(keyResults, objectiveId[0].id);
 
-        const insertKeyResults = `
-            INSERT into key_results (objective_id, result, completion_rate)
-            VALUES
-            ${valuesPlaceholders.join(',')}
-        `;
+            const insertKeyResults = `
+                INSERT into key_results (objective_id, result, completion_rate)
+                VALUES
+                ${valuesPlaceholders.join(',')}
+            `;
 
-        await query(insertKeyResults, actualValues);
+            await query(insertKeyResults, actualValues);
+        }
         return res.sendStatus(201);
     } catch(err) {
         logger.error(err);

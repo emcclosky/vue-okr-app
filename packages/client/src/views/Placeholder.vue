@@ -1,5 +1,9 @@
 <template>
-    <div class="component">
-        <h1>These features are coming soon. Stay tuned.</h1>
+    <div class=" feature component">
+        <h2>This feature is coming soon. Stay tuned.</h2>
     </div>
 </template>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/organisms/_placeholder.scss";
+</style>

@@ -31,10 +31,12 @@
   ul {
     list-style: none;
   }
-  li {
-    padding: $vr 0;
+  &__options {
+    padding-left: 0;
+  }
+  &__option {
+    padding: $vr 0 $vr $vr * 3;
     display: flex;
-    padding-left: $vr * 3;
     transition: fill 0.2s ease-in-out;
     cursor: pointer;
     &:hover {
@@ -43,31 +45,40 @@
         color: $primary-green;
       }
     }
-  }
-  a {
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-    color: $font-color;
-    font-size: $vr * 2.25;
-    font-weight: 500;
-    font-family: $font-primary;
-    margin-left: $vr / 2;
-    pointer-events: none;
-  }
-  &__options {
-    padding-left: 0;
+    &--no-icon {
+      padding: $vr $vr * 2;
+      pointer-events: none;
+      cursor: none;
+      &:hover {
+        a {
+          color: default;
+          cursor: none;
+          transition: none;
+        }
+      }
+    }
+    a {
+      text-decoration: none;
+      transition: color 0.2s ease-in-out;
+      color: $primary-font-color;
+      font-size: $vr * 2.25;
+      font-weight: 500;
+      font-family: $font-primary;
+      margin-left: $vr / 2;
+      pointer-events: none;
+    }
   }
 
   .red {
-    fill: $warning;
+    fill: $alert-error;
     a {
-      color: $warning;
+      color: $alert-error;
     }
     &:hover {
-      background-color: $warning;
-      fill: $white;
+      background-color: $alert-error;
+      fill: $primary-white;
       a {
-        color: $white;
+        color: $primary-white;
       }
     }
   }
@@ -79,14 +90,14 @@
 
 .nav-bar {
   .dropdown-menu {
-    top: $vr * 2.5;
-    right: $vr;
+    top: $vr;
+    right: 0;
     &__options {
       margin-block-start: $vr * 2;
       margin-block-end: $vr * 2;
     }
     &__option {
-      fill: $font-color;
+      fill: $primary-font-color;
       a {
         margin-left: $vr;
       }

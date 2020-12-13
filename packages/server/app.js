@@ -12,8 +12,10 @@ const cookieParser = require('cookie-parser');
 
 /* route handlers */
 const okrRoutes          = require('./routes/okr');
+const keyResultsRoutes   = require('./routes/keyResults');
 const registrationRoutes = require('./routes/registration');
 const authRoutes         = require('./routes/auth');
+const userRoutes         = require('./routes/users');
 
 const app = express();
 
@@ -27,6 +29,8 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(authRoutes);
 app.use(registrationRoutes);
 app.use(okrRoutes);
+app.use(keyResultsRoutes);
+app.use(userRoutes);
 
 app.use(history());
 app.use(express.static(path.join(__dirname, '../client/dist')));

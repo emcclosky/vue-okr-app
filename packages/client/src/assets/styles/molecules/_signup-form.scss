@@ -1,6 +1,6 @@
 .signup-form {
   &__container {
-    background-color: $white;
+    background-color: $primary-white;
     border-radius: $vr;
     max-width: 550px;
     margin: $vr * 4 auto;
@@ -71,24 +71,24 @@
         }
       }
       label {
-        color: $warning;
+        color: $alert-error;
       }
       input {
-        outline-color: $warning;
-        border-color: $warning;
+        outline-color: $alert-error;
+        border-color: $alert-error;
       }
     }
   }
   &__alert {
-    color: $warning;
+    color: $alert-error;
     display: none;
     font-size: $vr * 1.5;
     padding: $vr 0 0 $vr / 2;
     &--large {
       font-family: $font-secondary;
       font-weight: 600;
-      background-color: $warning;
-      color: $white;
+      background-color: $alert-error;
+      color: $primary-white;
       font-size: $vr * 1.5;
       padding: $vr * 1.5 0;
       border-radius: 4px;
@@ -118,7 +118,7 @@
     text-transform: uppercase;
     font-family: $font-secondary;
     span {
-      background-color: $white;
+      background-color: $primary-white;
       padding: 0 $vr * 2.25;
       position: relative;
       z-index: 5;

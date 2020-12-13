@@ -9,6 +9,11 @@ export default createStore({
 		menuOpen: false,
 		searchOpen: false,
 		dialogOpen: false,
+		alertNotification: {
+			message: '',
+			type: '',
+			visible: false
+		}
 	},
 	mutations: {
 		SET_CLIENT_WIDTH(state, data){
@@ -29,6 +34,9 @@ export default createStore({
 		SET_RESIZE_LISTENER(state, data){
 			state.setResizeListener = data;
 		},
+		SET_ALERT_NOTIFICATION(state, data){
+			state.alertNotification = data;
+		}
 	},
 	actions: {
 		setClientWidth({commit}, data){
@@ -48,7 +56,10 @@ export default createStore({
 		},
 		dialogOpen({commit}, data){
 			commit('DIALOG_OPEN', data);
-		}
+		},
+		setAlertNotification({commit}, data){
+			commit('SET_ALERT_NOTIFICATION', data);
+		},
 	},
 	modules
 });

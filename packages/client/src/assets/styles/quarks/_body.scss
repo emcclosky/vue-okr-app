@@ -8,7 +8,7 @@ body {
   letter-spacing: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: $blue-grey;
+  background-color: $primary-background;
   & *:focus {
     outline-width: 0;
   }
@@ -65,7 +65,7 @@ body {
     z-index: -99;
     overflow: hidden;
     transition: all 0.5s ease-in-out;
-    color: $white;
+    color: $primary-white;
     text-decoration: none;
     &:focus {
       left: 0;
@@ -78,6 +78,7 @@ body {
   }
   .page-container {
     overflow-x: hidden;
+    min-height: 100vh;
     &--logged-in {
       flex: auto;
       display: flex;

@@ -24,9 +24,11 @@ create table if not exists objectives (
   objective TEXT NOT NULL,
   description TEXT,
   completion_rate INTEGER,
+  visibility TEXT NOT NULL DEFAULT 'visible',
   user_id INTEGER REFERENCES users(id),
   created TIMESTAMP NOT NULL DEFAULT NOW(),
-  updated TIMESTAMP NOT NULL DEFAULT NOW()
+  updated TIMESTAMP NOT NULL DEFAULT NOW(),
+  published TIMESTAMP WITH TIME ZONE
 );
 -- KEY RESULTS
 create table if not exists key_results (
@@ -34,7 +36,7 @@ create table if not exists key_results (
   result TEXT NOT NULL,
   completion_rate INTEGER,
   objective_id INTEGER REFERENCES objectives(id) ON DELETE CASCADE,
-  created TIMESTAMP NOT NULL DEFAULT NOW(),
+  created TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
   updated TIMESTAMP NOT NULL DEFAULT NOW()
 );
 commit;

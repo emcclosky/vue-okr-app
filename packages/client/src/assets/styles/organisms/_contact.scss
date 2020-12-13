@@ -1,79 +1,79 @@
 .contact {
-    h2 {
-        font-family: $font-primary;
-        font-weight: 400;
-        font-size: $vr * 3;
-        color: $dark-grey;
-        text-transform: uppercase;
-        padding-top: $vr * 2;
-        letter-spacing: 0.1em;
-        line-height: 1em;
-        padding-bottom: $vr * 2;
-        position: relative;
-        display: inline-block;
-        // &::after {
-        //     content: '';
-        //     position: absolute;
-        //     height: 2px;
-        //     width: 150%;
-        //     bottom: 0;
-        //     left: 50%;
-        //     background-color: $accent-orange;
-        //     transform: translateX(-50%);
-        // }
+  h2 {
+    font-family: $font-primary;
+    font-weight: 400;
+    font-size: $vr * 3;
+    color: $dark-grey;
+    text-transform: uppercase;
+    padding-top: $vr * 2;
+    letter-spacing: 0.1em;
+    line-height: 1em;
+    padding-bottom: $vr * 2;
+    position: relative;
+    display: inline-block;
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     height: 2px;
+    //     width: 150%;
+    //     bottom: 0;
+    //     left: 50%;
+    //     background-color: $accent-orange;
+    //     transform: translateX(-50%);
+    // }
+  }
+  &__form {
+    padding: $vr * 7 0 0 0;
+  }
+  &__form-item {
+    margin-bottom: $vr * 2;
+    input {
+      width: 100%;
+      font-family: $font-primary;
+      font-size: $vr * 2.5;
+      height: 40px;
+      color: $primary-font-color;
+      border: 1px solid $accent-grey;
+      transition: border-color 0.15s ease-in-out;
+      border-radius: 4px;
+      padding-left: $vr;
+      &:focus {
+        outline: none;
+        border: 2px solid #6200ea;
+      }
     }
-    &__form {
-        padding: $vr * 7 0 0 0;
+    textarea {
+      width: 100%;
+      font-family: $font-primary;
+      font-size: $vr * 2.5;
+      color: $primary-font-color;
+      border: 1px solid $accent-grey;
+      transition: border-color 0.15s ease-in-out;
+      border-radius: 4px;
+      padding: $vr 0 0 $vr / 1.5;
+      min-height: 150px;
+      &:focus {
+        outline: none;
+        border: 2px solid #6200ea;
+      }
     }
-    &__form-item {
-        margin-bottom: $vr * 2;
-        input {
-            width: 100%;
-            font-family: $font-primary;
-            font-size: $vr * 2.5;
-            height: 40px;
-            color: $font-color;
-            border: 1px solid $accent-grey;
-            transition: border-color .15s ease-in-out;
-            border-radius: 4px;
-            padding-left: $vr;
-            &:focus {
-                outline: none;
-                border: 2px solid #6200EA;
-            }
-        }
-        textarea {
-            width: 100%;
-            font-family: $font-primary;
-            font-size: $vr * 2.5;
-            color: $font-color;
-            border: 1px solid $accent-grey;
-            transition: border-color .15s ease-in-out;
-            border-radius: 4px;
-            padding: $vr 0 0 $vr / 1.5;
-            min-height: 150px;
-            &:focus {
-                outline: none;
-                border: 2px solid #6200EA;
-            }
-        }
+  }
+  &__submit-button {
+    padding-top: $vr;
+    button {
+      font-family: $font-primary;
+      padding: 14px 36px;
+      border-radius: 30px;
+      background-color: transparent;
+      border-color: #6200ea;
+      color: #6200ea;
+      font-size: $vr * 2;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        color: $primary-white;
+        background-color: #6200ea;
+      }
     }
-    &__submit-button {
-        padding-top: $vr;
-        button {
-            font-family: $font-primary;
-            padding: 14px 36px;
-            border-radius: 30px;
-            background-color: transparent;
-            border-color: #6200EA;
-            color: #6200EA;
-            font-size: $vr * 2;
-            transition: all .2s ease-in-out;
-            cursor: pointer;
-            &:hover {
-                color: $white;
-                background-color: #6200EA;
-            }
-        }
-    }
+  }
 }

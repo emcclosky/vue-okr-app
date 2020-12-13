@@ -1,0 +1,13 @@
+.check-circle-icon {
+}
+
+/****************
+*** OVERRIDES ***
+****************/
+.alert-notification {
+  .check-circle-icon {
+    path:last-child {
+      fill: $primary-white;
+    }
+  }
+}

@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   &__container {
-    background-color: $white;
+    background-color: $primary-white;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -24,7 +24,7 @@
     padding: 0 $vr * 2;
     font-family: $font-primary;
     font-size: $vr * 2.25;
-    color: $font-color;
+    color: $primary-font-color;
   }
   h3 {
     @include font-primary-med;
@@ -36,20 +36,29 @@
   input {
     border-radius: $vr / 2;
     width: 100%;
-    height: $vr * 4;
+    box-sizing: border-box;
+    height: $vr * 4.5;
     margin: $vr 0 $vr * 2.5 0;
   }
-  // &__button-group {
-  //   button {
-  //     margin: 0;
-  //     &:first-of-type {
-  //       margin-bottom: $vr * 1.5;
-  // 		}
-  // 		@include mq($bp-medium) {
-
-  // 		}
-  //   }
-  // }
+  &__form-item {
+    span {
+      display: flex;
+      align-items: center;
+      position: relative;
+      svg {
+        position: absolute;
+        right: -$vr * 3;
+        visibility: hidden;
+      }
+      &:hover {
+        svg {
+          margin-bottom: $vr;
+          visibility: visible;
+          cursor: pointer;
+        }
+      }
+    }
+  }
   &__add-more-button {
     position: relative;
     cursor: pointer;

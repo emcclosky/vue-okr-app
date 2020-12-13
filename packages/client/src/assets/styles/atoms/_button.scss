@@ -55,10 +55,10 @@
     }
   }
   &--red {
-    background-color: $warning;
+    background-color: $alert-error;
     color: white;
     &:hover {
-      background-color: darken($color: $warning, $amount: 5%);
+      background-color: darken($color: $alert-error, $amount: 5%);
     }
   }
   &--hidden {
@@ -74,14 +74,15 @@
     background-color: transparent;
     &:hover {
       background-color: $dark-grey;
-      color: $white;
+      color: $primary-white;
     }
   }
   &--green {
     background-color: $primary-green;
-    color: $white;
+    border: 2px solid $primary-green;
+    color: $primary-white;
     svg {
-      fill: $white;
+      fill: $primary-white;
     }
     &:hover {
       background-color: darken($color: $primary-green, $amount: 5%);
@@ -114,7 +115,7 @@
       position: relative;
     }
     &:hover {
-      color: $white;
+      color: $primary-white;
       background-color: $dark-grey;
     }
   }
@@ -145,7 +146,8 @@
   }
 }
 
-.okr-form {
+.okr-form,
+.profile-form {
   &__button-group {
     button {
       margin: 0;

@@ -17,7 +17,7 @@
   &__close-button {
     position: absolute;
     top: 0;
-    background-color: $white;
+    background-color: $primary-white;
     height: $vr * 7;
     width: $vr * 7;
     left: 100%;
@@ -74,18 +74,18 @@
     }
     &:hover {
       background-color: #192d6e;
-      color: $white;
+      color: $primary-white;
       a {
-        color: $white;
-        fill: $white;
+        color: $primary-white;
+        fill: $primary-white;
       }
     }
     &.active {
       background-color: #192d6e;
-      color: $white;
+      color: $primary-white;
       a {
-        color: $white;
-        fill: $white;
+        color: $primary-white;
+        fill: $primary-white;
       }
       &:before {
         content: "";
@@ -94,7 +94,7 @@
         top: 0;
         width: 3px;
         height: 100%;
-        background-color: $white;
+        background-color: $primary-white;
       }
     }
     a {

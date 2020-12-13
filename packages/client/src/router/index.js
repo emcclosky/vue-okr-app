@@ -13,6 +13,7 @@ router.beforeResolve((routeTo, routeFrom, next) => {
   store.dispatch('menuOpen', false);
   // Check if auth is required on this route
   // (including nested routes).
+  store.dispatch('setAlertNotification', { message: '', type: '', visible: false });
   const authRequired = routeTo.matched.some((route) => route.meta.authRequired)
   // If auth isn't required for the route, just continue.
   if (!authRequired) {

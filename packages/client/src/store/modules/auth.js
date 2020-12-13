@@ -4,25 +4,27 @@ import { axiosHandler } from '../../services/axiosService'
 
 export default {
 	state: {
-		userData: null,
+		userData: {},
     authorized: false,
-    },
+  },
 	mutations: {
 		SET_USER_DATA(state, data){
-			state.userData = data;
+			for(let key in data) {
+				localStorage.setItem(key, data[key]);
+				state.userData[key] = data[key];
+			}
 		},
 		SET_AUTHORIZED(state, data){
       state.authorized = data;
 		}
   },
 	actions: {
+		async updateUserData({commit}, data) {
+			commit('SET_USER_DATA', data[0]);
+			return Promise.resolve('success');
+		},
 		async	setUserData({commit}, data){
-			if(localStorage.length <= 1) {
-				for(let key in data) {
-					localStorage.setItem(key, data[key]);
-				}
-			}
-			commit('SET_USER_DATA', localStorage);
+			commit('SET_USER_DATA', data);
 			return Promise.resolve('success');
 		},
 		setAuthorized({commit}, data){
@@ -71,7 +73,7 @@ export default {
 
 				await axiosHandler(axiosParams);
 				localStorage.clear();
-				this.dispatch('setUserData', null);
+				this.dispatch('setUserData', {});
 				this.dispatch('setAuthorized', false);
 				router.push('/');
 			} catch (err) {
@@ -133,7 +135,7 @@ export default {
 				commit('SET_AUTHORIZED', true);
 				return true;
 			} else {
-				// localStorage.clear();
+				localStorage.clear();
 				commit('SET_AUTHORIZED', false);
 				return false;
 			}

@@ -2,5 +2,6 @@
   "headline": "About",
   "body": "OKR is a WIP for tracking objectives as measured by key results. I made this because I wanted to create something that I would actually want to use. Although it's currently in its fledgling stages I hope to expand on it with the following features:",
   "imageUrl": "images/wfh.webp",
-  "features": ["Integrations", "Teams and Organizations", "Performance Insights", "OKR alignment", "Reports", "Weekly Check-ins"]
+  "features": ["OAuth 2.0", "Integrations: Jira, Github, Slack", "Teams and Organizations", "Performance Insights", "OKR alignment", "Reports", "Weekly Check-ins", "Algolia Integration"],
+  "disclaimer": "This app is in early alpha and there's no guarantee of data persistence."
 }

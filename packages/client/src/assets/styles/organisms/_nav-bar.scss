@@ -9,10 +9,10 @@
   display: inline-flex;
   justify-content: flex-end;
   height: 64px;
-  background-color: $white;
+  background-color: $primary-white;
   border-bottom: 3px solid $primary-grey;
   @include mq($bp-medium) {
-    background-color: $white;
+    background-color: $primary-white;
   }
   &__logo {
     font-family: $font-logo;
@@ -27,7 +27,7 @@
       }
     }
     a {
-      color: $black;
+      color: $primary-black;
     }
     @include mq($bp-medium) {
       padding: 0 0 0 $vr * 5;
@@ -53,7 +53,7 @@
       right: 0;
       top: 0;
       padding: $vr * 8 0 0 0;
-      background-color: $white;
+      background-color: $primary-white;
       align-items: baseline;
       z-index: 1001;
       width: 60%;
@@ -66,7 +66,7 @@
       button {
         position: absolute;
         top: $vr * 8;
-        background-color: $white;
+        background-color: $primary-white;
         height: $vr * 7;
         width: $vr * 7;
         left: 100%;
@@ -118,7 +118,7 @@
         margin: $vr $vr * 2.25 $vr * 1.5 $vr * 2.25;
       }
       &--mobile-only {
-        fill: $black;
+        fill: $primary-black;
         position: absolute;
         z-index: 10;
         padding: 0;
@@ -140,7 +140,7 @@
         letter-spacing: 0.5px;
         position: relative;
         display: block;
-        color: $black;
+        color: $primary-black;
         padding: $vr * 1.25 0 $vr 0;
         border-bottom: 3px solid transparent;
         transition: all 150ms ease-in-out;
@@ -171,7 +171,7 @@
     pointer-events: none;
     &--active {
       z-index: 5;
-      background-color: $white;
+      background-color: $primary-white;
       visibility: initial;
       pointer-events: initial;
       width: 100%;
@@ -192,7 +192,7 @@
     border-radius: $vr / 2;
     padding: 0 0 0 $vr;
     width: 75%;
-    background-color: $white;
+    background-color: $primary-white;
     order: 1;
     @include mq($bp-medium) {
       width: auto;
@@ -261,7 +261,7 @@
   }
   &__link {
     margin: 0 $vr;
-    color: $font-color;
+    color: $primary-font-color;
     font-family: $font-primary;
     font-weight: 400;
     font-size: $vr * 2.25;
@@ -277,19 +277,25 @@
         display: none;
       }
     }
-    &:hover {
-      span {
-        color: $primary-green;
-      }
-      .notification-icon {
-        transition: all 150ms ease-in-out;
-        fill: $primary-green;
+    .nav-bar__link-button {
+      &:hover {
+        span {
+          pointer-events: none;
+          color: $primary-green;
+        }
+        svg {
+          pointer-events: none;
+        }
+        .notification-icon {
+          transition: all 150ms ease-in-out;
+          fill: $primary-green;
+        }
       }
     }
     span {
       display: none;
       transition: all 150ms ease-in-out;
-      color: $font-color;
+      color: $primary-font-color;
       @include mq($bp-medium) {
         display: inline;
         padding: 0 $vr;

@@ -12,7 +12,10 @@
                 <div v-for="(kr, index) in submissionData.keyResults" :key="'KR-'+index">
                     <div class="okr-form__form-item okr__form-item--key-result">
                         <label for="">Key Result Name</label>
-                        <input type="text" v-model="kr.result">
+                        <span>
+                            <input type="text" v-model="kr.result">
+                            <CloseIcon @click="removeKeyResult(kr, index)" />
+                        </span>
                         <label for="">Completion Rate</label>
                         <input class="" type="number" min="0" max="100" v-model.number="kr.completion_rate">
                     </div>
@@ -31,8 +34,12 @@
 </template>
 
 <script>
+import CloseIcon from '@/components/ui-elements/CloseIcon';
 
 export default {
+    components: {
+        CloseIcon
+    },
     data(){
         return {
             submissionData: {
@@ -49,6 +56,10 @@ export default {
         }
     },
     methods: {
+        removeKeyResult(kr, index){
+            this.submissionData.keyResults.splice(index);
+            console.log(this.submissionData.keyResults)
+        },
         handleSubmit(){
             this.$store.dispatch('editOkr', this.submissionData);
             this.$router.push('/okrs');
@@ -62,9 +73,11 @@ export default {
         }
     },
     mounted(){
-        this.submissionData.keyResults = JSON.parse(JSON.stringify(this.okrData.key_results));
-        this.submissionData.objective = this.okrData.objective;
-        this.submissionData.id = this.okrData.id;
+        if(this.okrData) {
+            this.submissionData.keyResults = JSON.parse(JSON.stringify(this.okrData.key_results));
+            this.submissionData.objective = this.okrData.objective;
+            this.submissionData.id = this.okrData.id;
+        }
     }
 }
 </script>

@@ -1,5 +1,5 @@
 .hero-standard {
-  background-color: $white;
+  background-color: $primary-white;
   &__container {
     position: relative;
     height: fit-content;
@@ -29,7 +29,7 @@
       max-height: 200px;
     }
     @include mq($bp-large) {
-      max-height: 245px;
+      max-height: 280px;
     }
   }
   &__text-content {

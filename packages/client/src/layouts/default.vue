@@ -7,8 +7,9 @@
 		<main id="main">
 			<HeroStandard v-if="!authorized && routeName === 'Home'" />
 			<Sidebar v-if="authorized" />
-				<div class="page-scrim" :class="setScrimClass()"></div>
-				<slot/>
+			<div class="page-scrim" :class="setScrimClass()"></div>
+			<AlertNotification v-if="alertNotification.message && alertNotification.visible" />
+			<slot/>
 		</main>
 		<GlobalFooter v-if="!authorized && routeName === 'Home'" />
 	</div>
@@ -19,6 +20,7 @@ import NavBar from '@/components/global/NavBar';
 import GlobalFooter from '@/components/global/GlobalFooter';
 import Sidebar from '@/components/global/Sidebar';
 import HeroStandard from '@/components/heroes/HeroStandard';
+import AlertNotification from '@/components/atoms/AlertNotification';
 import getClientWidth from '@/mixins/getClientWidth.js';
 import { mapState, mapGetters } from 'vuex'
 
@@ -27,7 +29,8 @@ export default {
 		NavBar,
 		GlobalFooter,
 		Sidebar,
-		HeroStandard
+		HeroStandard,
+		AlertNotification
 	},
 	mixins: [getClientWidth],
 	data() {
@@ -41,6 +44,7 @@ export default {
 			menuOpen: 'menuOpen',
 			searchOpen: 'searchOpen',
 			dialogOpen: 'dialogOpen',
+			alertNotification: 'alertNotification',
 			authorized: state => state.auth.authorized
 		}),
 	},
@@ -92,6 +96,9 @@ export default {
 		this.scrollPos = 0;
 		window.addEventListener('scroll', this.updateScrollPos);
 		this.$store.dispatch('setScrollPos', this.scrollPos);
+		if(this.userData === undefined && localStorage.length > 1){
+			this.$store.dispatch('setUserData', localStorage);
+		}
 	},
 	destroy() {
 		window.removeEventListener('scroll', this.updateScrollPos);

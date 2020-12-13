@@ -5,10 +5,11 @@
         <h2>{{ data.headline }}</h2>
         <p>{{ data.body }}</p>
         <div class="text-block__features">
-          <div v-for="(feature, index) in data.features" :key="`${feature}-${index}`">
-            {{feature}}
+          <div class="text-block__feature" v-for="(feature, index) in data.features" :key="`${feature}-${index}`">
+            <component v-bind:is="setCheckbox(feature)"></component>{{feature}}
           </div>
         </div>
+        <div class="text-block__disclaimer"><WarningIcon />{{ data.disclaimer }}</div>
       </div>
       <div class="text-block__image">
         <img :src="setImage(data.imageUrl)" alt="">
@@ -18,8 +19,16 @@
 </template>
 
 <script>
+import CheckboxIcon from '@/components/ui-elements/CheckboxIcon';
+import CheckboxBlank from '@/components/ui-elements/CheckboxBlank';
+import WarningIcon from '@/components/ui-elements/WarningIcon';
 
 export default {
+  components: {
+    CheckboxIcon,
+    CheckboxBlank,
+    WarningIcon
+  },
   props: {
     data: Object,
     home: Boolean
@@ -33,12 +42,16 @@ export default {
     clientWidth(){
       return this.$store.state.clientWidth;
     }
-},
+  },
   methods: {
+    setCheckbox(feature) {
+      if(feature === 'OAuth 2.0') return CheckboxIcon;
+      else return CheckboxBlank;
+    },
     setImage(imagePath) {
       return require(`@/assets/${imagePath}`);
     }
-  }
+  },
 }
 </script>
 

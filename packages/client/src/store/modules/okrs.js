@@ -4,7 +4,7 @@ import { axiosHandler } from '../../services/axiosService'
 export default {
 	state: {
 		allOkrData: [],
-		currentOkrData: null,
+		currentOkrData: {},
 	},
 	mutations: {
 		SET_ALL_OKR_DATA(state, data){
@@ -12,6 +12,14 @@ export default {
 		},
 		SET_OKR_DATA(state, data){
 			state.currentOkrData = data;
+		},
+		ADD_KEY_RESULT(state, data) {
+			state.allOkrData.forEach(okr => {
+				console.log('key results', okr.key_results)
+				if(okr.id === data.objectiveId) {
+					okr.key_results.push(data)
+				}
+			});
 		}
 	},
 	actions: {
@@ -90,6 +98,20 @@ export default {
 				await axiosHandler(axiosParams);
 			} catch (err) {
 				console.log('error from editOkr action', err);
+			}
+		},
+		async createKeyResult({commit}, payload){
+			try {
+				const axiosParams = {
+					url: `http://127.0.0.1:8000/key-results/key-result`,
+					method: 'post',
+					payload
+				};
+				await axiosHandler(axiosParams);
+				commit('ADD_KEY_RESULT', payload);
+				return Promise.resolve('success');
+			} catch (err) {
+				console.log('error from createOkr action', err);
 			}
 		}
 	},

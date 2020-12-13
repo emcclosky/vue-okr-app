@@ -1,0 +1,41 @@
+.alert-notification {
+  box-sizing: border-box;
+  border-radius: $vr;
+  padding-top: $vr * 8;
+  &--success {
+    .alert-notification__container {
+      background-color: $alert-success;
+    }
+  }
+  &--error {
+    .alert-notification__container {
+      background-color: $alert-error;
+    }
+  }
+  &__container {
+    display: flex;
+    height: $vr * 3;
+    background-color: $primary-green;
+    padding: $vr * 2;
+    justify-content: space-between;
+    p {
+      color: $primary-white;
+      margin: 0;
+      padding-left: $vr;
+    }
+  }
+  &__message {
+    display: flex;
+  }
+  &__cta-container {
+    display: flex;
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      svg {
+        fill: $primary-white;
+      }
+    }
+  }
+}

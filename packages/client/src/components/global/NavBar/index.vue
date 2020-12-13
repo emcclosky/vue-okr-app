@@ -20,20 +20,21 @@
 						<button class="nav-bar__search-button"><SearchIcon /></button>
 					</li>
 					<li class="nav-bar__link">
-						<a>
+						<a class="nav-bar__link-button" @click.stop="toggleDropdown($event.target)" ref="notification-button" type="button">
 							<NotificationIcon />
 						</a>
+						<DropdownMenu :dropdownOptions="[{ name: 'No notifications to show', action: void(0), icon: null  }]" v-click-outside="{exclude: ['notification-button'], handler: 'dropdownHandler'}" />
 					</li>
 					<li class="nav-bar__link">
-						<a @click="toggleDropdown($event)" ref="profile-button" type="button">
+						<a class="nav-bar__link-button" @click.stop="toggleDropdown($event.target)" ref="profile-button" type="button">
 							<ProfileIcon />
 							<span v-if="userData">
 								{{ userData.first_name }} {{ userData.last_name }}
 							</span>
 							<ChevronDownIcon />
 						</a>
+						<DropdownMenu :dropdownOptions="dropdownOptions" v-click-outside="{exclude: ['profile-button'], handler: 'dropdownHandler'}" />
 					</li>
-					<DropdownMenu :dropdownOptions="dropdownOptions" v-click-outside="{exclude: ['profile-button'], handler: 'dropdownHandler'}" />
 				</span>
 			</ul>
 	</div>
@@ -123,16 +124,15 @@ export default {
 				this.$store.dispatch('menuOpen', this.menuOpen);
 			}
 		},
-		toggleDropdown(){
-			const currentDropdown = this.$el.querySelector('.dropdown-menu');
-			if(currentDropdown.classList.contains('active'))
-				currentDropdown.classList.remove('active');
-			else
-				currentDropdown.classList.add('active');
+		toggleDropdown($event){
+			[...this.$el.getElementsByClassName('dropdown-menu')].forEach(dropdown => {
+				if($event === dropdown.previousElementSibling) {
+					dropdown.classList.contains('active') ? dropdown.classList.remove('active') : dropdown.classList.add('active')
+				}
+			});
 		},
-		dropdownHandler(){
-			const dropdown = this.$el.querySelector('.dropdown-menu');
-			if(dropdown) dropdown.classList.remove('active');
+		dropdownHandler($event, el){
+			if(el.classList.contains('active')) el.classList.remove('active')
 		},
 		handleLogout() {
 			this.$store.dispatch('logout');
@@ -142,13 +142,12 @@ export default {
 		}
 	},
 	updated(){
-		if(this.userData === null && localStorage.length > 1){
-			const { authorized, email, first_name, last_name, id, expiration } = localStorage;
-			this.$store.dispatch('setUserData', { authorized, email, first_name, last_name, id, expiration });
+		if(this.userData === undefined && localStorage.length > 1){
+			this.$store.dispatch('setUserData', localStorage);
 		}
-	}
+	},
 }
 </script>
 <style lang="scss" scoped>
-    @import '@/assets/styles/organisms/_nav-bar.scss'
+  @import '@/assets/styles/organisms/_nav-bar.scss'
 </style>

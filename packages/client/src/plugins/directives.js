@@ -14,7 +14,7 @@ export default {
       });
 
       if (!el.contains(e.target) && !clickedOnExcludedEl) {
-        binding.instance[handler](e);
+        binding.instance[handler](e, el);
       }
     }
     document.addEventListener('click', el.handleOutsideClick);

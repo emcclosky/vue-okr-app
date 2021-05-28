@@ -1,5 +1,5 @@
-'use strict';
-import axios from 'axios';
+"use strict";
+import axios from "axios";
 
 /**
  * General axios handler. This will eventually be a standalone service. It can make any kind of
@@ -13,21 +13,26 @@ import axios from 'axios';
  * or status codes.
  */
 const axiosHandler = async function ({ url, method, payload }) {
-	const data = await axios[method](url, payload);
-	console.log('axios res data', data)
-	return data;
-}
+  const data = await axios[method](url, payload);
+  console.log("axios res data", data);
+  return data;
+};
 
-axios.interceptors.request.use((config) => {
-	config.withCredentials = true;
-	if(document.cookie.includes('jwt')) {
-		const token = document.cookie.split('; ').find(row => row.startsWith('jwt')).split('=')[1];
-		config.headers.common['Authorization'] = `Bearer ${token}`;
-	}
+axios.interceptors.request.use(
+  (config) => {
+    config.withCredentials = true;
+    if (document.cookie.includes("jwt")) {
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("jwt"))
+        .split("=")[1];
+      config.headers.common["Authorization"] = `Bearer ${token}`;
+    }
     return config;
-  }, (error) => {
-    // Do something with request error
+  },
+  (error) => {
     return Promise.reject(error);
-});
+  }
+);
 
 export { axiosHandler };

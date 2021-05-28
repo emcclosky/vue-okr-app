@@ -1,19 +1,17 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 exports.authMiddleware = (req, res, next) => {
-    if(req.headers && req.headers.authorization) {
-        const token = req.headers.authorization.split(' ')[1];
-        try{
-            const verifiedToken = jwt.verify(token, process.env.secret);
-            res.locals.user_id = verifiedToken.user_id;
-            return next();
-        } catch(err){
-            console.error(err)
-            return res.statusStatus(401);
-        }
-    } else
-        return res.sendStatus(401);
-}
+  if (req.headers && req.headers.authorization) {
+    const token = req.headers.authorization.split(" ")[1];
+    try {
+      const verifiedToken = jwt.verify(token, process.env.secret);
+      res.locals.user_id = verifiedToken.user_id;
+      return next();
+    } catch (err) {
+      return res.statusStatus(401);
+    }
+  } else return res.sendStatus(401);
+};
 // const fs = require('fs');
 
 // const PUB_KEY = fs.readFileSync(__dirname + '/id_rsa_pub.pem', 'utf8');
@@ -41,14 +39,11 @@ exports.authMiddleware = (req, res, next) => {
 //  */
 // const signedJWT = jwt.sign(payloadObj, PRIV_KEY, { algorithm: 'RS256'});
 
-
 // console.log(signedJWT); // Should get the same exact token that we had in our example
-
 
 // // ============================================================
 // // -------------------  VERIFY --------------------------------
 // // ============================================================
-
 
 // // Verify the token we just signed using the public key.  Also validates our algorithm RS256
 // jwt.verify(signedJWT, PUB_KEY, { algorithms: ['RS256'] }, (err, payload) => {

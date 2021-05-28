@@ -1,27 +1,26 @@
 require("dotenv").config();
 
-const { Pool } = require('pg');
+const { Pool } = require("pg");
+
 const pool = new Pool({
-    user: 'admin',
-    host: 'localhost',
-    database: 'okrs',
-    password: process.env.POSTGRES_PASSWORD,
-    port: 5432,
-  })
+  user: process.env.PG_USER,
+  host: process.env.HOST,
+  database: process.env.PG_DB,
+  password: process.env.POSTGRES_PASSWORD,
+  port: process.env.PG_PORT,
+});
 
-
-const query = async (text, values) => {
-    let client;
-    try {
-      client = await pool.connect();
-      const data = await client.query(text, values);
-      return data.rows;
-    } catch (err) {
-      console.error('Error from db call: ', err);
-      throw new Error( `messge: ${err.message}, code: ${err.code}` );
-    } finally {
-      client.release();
-    }
+export const query = async (text, values) => {
+  let client;
+  try {
+    client = await pool.connect();
+    const data = await client.query(text, values);
+    return data.rows;
+  } catch (err) {
+    throw new Error(`messge: ${err.message}, code: ${err.code}`);
+  } finally {
+    client.release();
+  }
 };
 
 exports.queryPassword = (email) => {
@@ -30,7 +29,7 @@ exports.queryPassword = (email) => {
       INNER JOIN users AS ut ON (pt.user_id = ut.id)
       WHERE ut.email = $1;
   `;
- return query(getHashedPassword, [ email ]);
+  return query(getHashedPassword, [email]);
 };
 
 exports.queryUpdatePassword = (password, email) => {
@@ -40,7 +39,7 @@ exports.queryUpdatePassword = (password, email) => {
     WHERE (SELECT id from users WHERE email = $2) = passwords.user_id
     returning *;
   `;
-  return query(updatePassword, [ password, email ]);
+  return query(updatePassword, [password, email]);
 };
 
 exports.queryUser = (email) => {
@@ -48,7 +47,7 @@ exports.queryUser = (email) => {
     SELECT email FROM users
     WHERE users.email = $1;
   `;
-  return query(queryUser, [ email ]);
+  return query(queryUser, [email]);
 };
 
 exports.queryUserData = (email) => {
@@ -56,7 +55,7 @@ exports.queryUserData = (email) => {
     SELECT email, first_name, last_name, id FROM users
     WHERE users.email = $1;
   `;
-  return query(queryUserData, [ email ]);
+  return query(queryUserData, [email]);
 };
 
 exports.queryFindOrCreateUser = (firstName, lastName, email) => {
@@ -64,8 +63,6 @@ exports.queryFindOrCreateUser = (firstName, lastName, email) => {
   INSERT INTO users (first_name, last_name, email)
     VALUES ($1, $2, $3)
   ON CONFLICT(email) DO UPDATE SET first_name = $1
-  RETURNING id, email, first_name, last_name;`
-  return query(queryFindOrCreateUser, [ firstName, lastName, email ]);
-}
-
-exports.query = query;
+  RETURNING id, email, first_name, last_name;`;
+  return query(queryFindOrCreateUser, [firstName, lastName, email]);
+};

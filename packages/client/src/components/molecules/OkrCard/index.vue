@@ -7,11 +7,16 @@
         @click="showKeyResults = !showKeyResults"
         @keydown.enter="showKeyResults = !showKeyResults"
       >
-        <DropdownArrow :class="{ 'drop-down-arrow--active': showKeyResults === true }"/>
+        <DropdownArrow
+          :class="{ 'drop-down-arrow--active': showKeyResults === true }"
+        />
         <h4 class="okr-card__objective-title">{{ data.objective }}</h4>
       </span>
       <div class="okr-card__measurement">
-        <ProgressBar :progress="objectiveCompletion" v-if="clientWidth >= 768"/>
+        <ProgressBar
+          :progress="objectiveCompletion"
+          v-if="clientWidth >= 768"
+        />
         <span class="okr-card__percent">{{ objectiveCompletion }}%</span>
       </div>
       <span class="okr-card__options">
@@ -21,7 +26,10 @@
         <DropdownMenu
           :dropdownOptions="dropdownOptions"
           :element="data"
-          v-click-outside="{ exclude: ['options-button'], handler: 'clickOutsideDropdownHandler' }"
+          v-click-outside="{
+            exclude: ['options-button'],
+            handler: 'clickOutsideDropdownHandler',
+          }"
         />
       </span>
     </div>
@@ -33,15 +41,26 @@
         <li class="okr-card__add-key-result">
           <span tabindex="0">
             <AddIcon />
-						<input placeholder="Add a new key result" @blur.stop="submitKeyResult($event.target)" @keydown.enter.stop="$event.target.blur()" />
+            <input
+              placeholder="Add a new key result"
+              @blur.stop="submitKeyResult($event.target)"
+              @keydown.enter.stop="$event.target.blur()"
+            />
           </span>
         </li>
       </ul>
-			<div class="okr-card__add-key-result" v-if="data.key_results.length === 0">
-				<span tabindex="0">
-					<AddIcon />
-					<input placeholder="Add a new key result" @blur.stop="submitKeyResult($event.target)" @keydown.enter.stop="$event.target.blur()" />
-				</span>
+      <div
+        class="okr-card__add-key-result"
+        v-if="data.key_results.length === 0"
+      >
+        <span tabindex="0">
+          <AddIcon />
+          <input
+            placeholder="Add a new key result"
+            @blur.stop="submitKeyResult($event.target)"
+            @keydown.enter.stop="$event.target.blur()"
+          />
+        </span>
       </div>
     </div>
     <AlertDialog
@@ -73,8 +92,8 @@ export default {
       objectiveCompletion: 0,
       confirmationCompleted: null,
       showDialog: false,
-			showKeyResults: false,
-			noKeyResults: false,
+      showKeyResults: false,
+      noKeyResults: false,
       dialogOptions: {
         title: "Delete this okr?",
         message: "Deleting an okr is permanent and cannot be recovered.",
@@ -98,7 +117,7 @@ export default {
   computed: {
     clientWidth() {
       return this.$store.state.clientWidth;
-    }
+    },
   },
   methods: {
     handleAlertAction(bool) {
@@ -110,14 +129,15 @@ export default {
       this.$store.dispatch("dialogOpen", false);
     },
     calculateObjectiveCompletion() {
-      if(this.data.key_results.length > 0) {
+      if (this.data.key_results.length > 0) {
         const keyResultCount = this.data.key_results.length;
         let completionRateSum = 0;
-        this.data.key_results.forEach(( kr ) => {
-          if(kr.completion_rate)
-            completionRateSum += kr.completion_rate
+        this.data.key_results.forEach((kr) => {
+          if (kr.completion_rate) completionRateSum += kr.completion_rate;
         });
-        this.objectiveCompletion = Math.round(completionRateSum / keyResultCount);
+        this.objectiveCompletion = Math.round(
+          completionRateSum / keyResultCount
+        );
       }
     },
     toggleDropdown() {
@@ -141,14 +161,18 @@ export default {
     editOkr(okr) {
       this.$store.dispatch("setOkrData", okr);
       this.$router.push(`/okrs/okr/${okr.id}`);
-		},
-		async submitKeyResult(target) {
-			if(target.value) {
-        await this.$store.dispatch("createKeyResult", { result: target.value, completionRate: 0, objectiveId: this.data.id })
-        target.value = '';
+    },
+    async submitKeyResult(target) {
+      if (target.value) {
+        await this.$store.dispatch("createKeyResult", {
+          result: target.value,
+          completionRate: 0,
+          objectiveId: this.data.id,
+        });
+        target.value = "";
         this.calculateObjectiveCompletion();
-			}
-		},
+      }
+    },
     deleteOkr(okr) {
       if (this.confirmationCompleted === null) {
         this.showDialog = true;
@@ -159,11 +183,11 @@ export default {
       }
     },
   },
-  updated(){
+  updated() {
     this.calculateObjectiveCompletion();
   },
-  created(){
-		this.calculateObjectiveCompletion();
+  created() {
+    this.calculateObjectiveCompletion();
   },
 };
 </script>

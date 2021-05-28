@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import TextBlock from '@/components/molecules/TextBlock';
-import aboutContent from '@/content/about-section.json';
+import TextBlock from "@/components/molecules/TextBlock";
+import aboutContent from "@/content/about-section.json";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    TextBlock
+    TextBlock,
   },
   data() {
     return {
-      aboutContent: aboutContent
-    }
-  }
-}
+      aboutContent: aboutContent,
+    };
+  },
+};
 </script>

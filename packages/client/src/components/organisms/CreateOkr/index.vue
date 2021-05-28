@@ -14,18 +14,6 @@
             v-model="submissionData.objective"
           />
         </div>
-        <!-- <div class="okr-form__form-item okr-form__form-item--type">
-                    <label for="type">Type</label>
-                    <input type="text" name="type" placeholder="Select type" v-model="submissionData.type">
-                </div>
-                <div class="okr-form__form-item okr-form__form-item--type">
-                    <label for="owner">Owner</label>
-                    <input type="text" name="owner" placeholder="Select type" v-model="submissionData.owner">
-                </div>
-                <div class="okr-form__form-item okr-form__form-item--visibility">
-                    <label for="visibility">Visibility</label>
-                    <input type="text" name="visibility" placeholder="Select visibility" v-model="submissionData.visibility">
-                </div> -->
         <hr />
         <h3>Key Results</h3>
         <div v-for="(kr, index) in keyResults" :key="'KR-' + index">

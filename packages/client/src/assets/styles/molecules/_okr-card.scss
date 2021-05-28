@@ -1,167 +1,167 @@
 .okr-card {
-	display: flex;
-	border-radius: $vr/2;
-	text-align: left;
-	background-color: $primary-white;
-	flex-direction: column;
-	font-family: $font-primary;
-	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
-	transition: all 0.25s ease-in-out;
-	// padding: 0 $vr * 2;
-	z-index: 1;
-	position: static;
-	border: 2px solid $primary-grey;
-	&:hover {
-		.okr-card__options {
-			visibility: visible;
-			pointer-events: visible;
-		}
-	}
-	&__card-container {
-		display: flex;
-		flex-direction: column;
-	}
-	&__objective {
-		display: flex;
-		align-items: center;
-		cursor: pointer;
-		transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
-		// &:hover {
-		//   background-color: $blue-grey;
-		// }
-	}
-	&__objective-group {
-		display: flex;
-		flex-basis: 70%;
-		align-items: center;
-		margin: $vr * 2.5 0;
-		padding: 0 $vr * 2;
-	}
-	&__objective-title {
-		font-size: $vr * 2.25;
-		font-weight: 600;
-		font-family: $font-primary;
-		margin: 0 0 0 $vr * 1.5;
-		color: $primary-font-color;
-		@include mq($bp-medium) {
-			font-size: $vr * 2.5;
-		}
-	}
-	&__measurement {
-		flex-basis: 30%;
-		display: flex;
-		justify-content: flex-end;
-		@include mq($bp-medium) {
-			justify-content: initial;
-		}
-	}
-	&__options {
-		padding: 0 $vr * 2;
-		position: relative;
-		@include mq($bp-medium) {
-			visibility: hidden;
-			pointer-events: none;
-			&.active {
-				button {
-					visibility: visible;
-					pointer-events: visible;
-				}
-			}
-		}
-		button {
-			cursor: pointer;
-			border-radius: 50%;
-			background-color: $dark-grey;
-			fill: $primary-white;
-			border: transparent;
-			height: $vr * 3.75;
-			width: $vr * 3.75;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			.options-icon {
-				flex-shrink: 0;
-			}
-		}
-	}
-	&__percent {
-		padding: $vr $vr * 1.5;
-		border-radius: 4px;
-		color: $primary-white;
-		background-color: $accent-orange;
-		@include mq($bp-medium) {
-			border-radius: 0;
-			background-color: transparent;
-			color: $primary-font-color;
-			padding: 0 0 0 $vr;
-		}
-	}
-	&__key-results {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		position: relative;
-		li {
-			position: relative;
-			&:before {
-				content: "";
-				position: absolute;
-				border-top: 3px dashed $primary-grey;
-				width: 100%;
-			}
-			// &:nth-child(odd)::after {
-			// 	content: "";
-			// 	position: absolute;
-			// 	width: 100%;
-			// 	height: 100%;
-			// 	background-color: $alpha-blue-15;
-			// 	left: 0;
-			// }
-			// &:nth-of-type(odd)::after {
-			// 	content: "";
-			// 	position: absolute;
-			// 	width: 100%;
-			// 	height: 100%;
-			// 	background-color: $alpha-blue-15;
-			// 	left: 0;
-			// }
-		}
-	}
-	&__add-key-result {
-		position: relative;
-		cursor: pointer;
-		transition: all 0.25s ease-in-out;
-		&:hover {
-			fill: $primary-green;
-			input {
-				cursor: pointer;
-				&::placeholder {
-					color: $primary-green;
-				}
-			}
-		}
+  display: flex;
+  border-radius: $vr/2;
+  text-align: left;
+  background-color: $primary-white;
+  flex-direction: column;
+  font-family: $font-primary;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease-in-out;
+  // padding: 0 $vr * 2;
+  z-index: 1;
+  position: static;
+  border: 2px solid $primary-grey;
+  &:hover {
+    .okr-card__options {
+      visibility: visible;
+      pointer-events: visible;
+    }
+  }
+  &__card-container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__objective {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+    // &:hover {
+    //   background-color: $blue-grey;
+    // }
+  }
+  &__objective-group {
+    display: flex;
+    flex-basis: 70%;
+    align-items: center;
+    margin: $vr * 2.5 0;
+    padding: 0 $vr * 2;
+  }
+  &__objective-title {
+    font-size: $vr * 2.25;
+    font-weight: 600;
+    font-family: $font-primary;
+    margin: 0 0 0 $vr * 1.5;
+    color: $primary-font-color;
+    @include mq($bp-medium) {
+      font-size: $vr * 2.5;
+    }
+  }
+  &__measurement {
+    flex-basis: 30%;
+    display: flex;
+    justify-content: flex-end;
+    @include mq($bp-medium) {
+      justify-content: initial;
+    }
+  }
+  &__options {
+    padding: 0 $vr * 2;
+    position: relative;
+    @include mq($bp-medium) {
+      visibility: hidden;
+      pointer-events: none;
+      &.active {
+        button {
+          visibility: visible;
+          pointer-events: visible;
+        }
+      }
+    }
+    button {
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: $dark-grey;
+      fill: $primary-white;
+      border: transparent;
+      height: $vr * 3.75;
+      width: $vr * 3.75;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .options-icon {
+        flex-shrink: 0;
+      }
+    }
+  }
+  &__percent {
+    padding: $vr $vr * 1.5;
+    border-radius: 4px;
+    color: $primary-white;
+    background-color: $accent-orange;
+    @include mq($bp-medium) {
+      border-radius: 0;
+      background-color: transparent;
+      color: $primary-font-color;
+      padding: 0 0 0 $vr;
+    }
+  }
+  &__key-results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    li {
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        border-top: 3px dashed $primary-grey;
+        width: 100%;
+      }
+      // &:nth-child(odd)::after {
+      // 	content: "";
+      // 	position: absolute;
+      // 	width: 100%;
+      // 	height: 100%;
+      // 	background-color: $alpha-blue-15;
+      // 	left: 0;
+      // }
+      // &:nth-of-type(odd)::after {
+      // 	content: "";
+      // 	position: absolute;
+      // 	width: 100%;
+      // 	height: 100%;
+      // 	background-color: $alpha-blue-15;
+      // 	left: 0;
+      // }
+    }
+  }
+  &__add-key-result {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    &:hover {
+      fill: $primary-green;
+      input {
+        cursor: pointer;
+        &::placeholder {
+          color: $primary-green;
+        }
+      }
+    }
 
-		input {
-			font-weight: 500;
-			font-size: $vr * 1.75;
-			width: 100%;
-			border: none;
-			&::placeholder {
-				transition: all 0.25s ease-in-out;
-				color: $primary-font-color;
-			}
-			&:focus {
-				cursor: auto;
-				outline: none;
-				&::placeholder {
-					color: lighten($color: $primary-font-color, $amount: 50%);
-				}
-			}
-		}
-		span {
-			display: flex;
-			align-items: center;
-			padding: $vr * 2 $vr * 6;
-		}
-	}
+    input {
+      font-weight: 500;
+      font-size: $vr * 1.75;
+      width: 100%;
+      border: none;
+      &::placeholder {
+        transition: all 0.25s ease-in-out;
+        color: $primary-font-color;
+      }
+      &:focus {
+        cursor: auto;
+        outline: none;
+        &::placeholder {
+          color: lighten($color: $primary-font-color, $amount: 50%);
+        }
+      }
+    }
+    span {
+      display: flex;
+      align-items: center;
+      padding: $vr * 2 $vr * 6;
+    }
+  }
 }

@@ -1,5 +1,5 @@
-import Vuex from 'vuex';
-import VueRouter from 'vue-router';
+import Vuex from "vuex";
+import VueRouter from "vue-router";
 import { mount, createLocalVue } from "@vue/test-utils";
 import Sidebar from "./index.vue";
 import PerformanceIcon from "@/components/ui-elements/PerformanceIcon";
@@ -22,72 +22,71 @@ localVue.component("TaskIcon", TaskIcon);
 const router = new VueRouter();
 
 describe("Sidebar", () => {
-    it("active modifier removed from sidebar when menuOpen is false", async () => {
-        const mockActions = {
-            menuOpen: jest.fn(),
-        }
+  it("active modifier removed from sidebar when menuOpen is false", async () => {
+    const mockActions = {
+      menuOpen: jest.fn(),
+    };
 
-        const store = new Vuex.Store({
-            state: {
-                menuOpen: true
-            },
-            actions: mockActions
-        });
-
-        const wrapper = mount(Sidebar, {
-            localVue,
-            store,
-            router
-        });
-
-        expect(wrapper.vm.menuOpen).toBe(true);
-        const sidebar = wrapper.find('.sidebar');
-        expect(sidebar.classes()).toContain('sidebar--open');
-        await wrapper.find('.sidebar__close-button').trigger('click');
-        expect(sidebar.classes()).not.toContain('sidebar--active');
+    const store = new Vuex.Store({
+      state: {
+        menuOpen: true,
+      },
+      actions: mockActions,
     });
 
-    it("dispatches menuOpen status when close button clicked", async () => {
-        const mockActions = {
-            menuOpen: jest.fn(),
-        }
-
-        const store = new Vuex.Store({
-            state: {
-                menuOpen: true
-            },
-            actions: mockActions
-        });
-
-        const wrapper = mount(Sidebar, {
-            localVue,
-            store,
-            router
-        });
-
-        expect(wrapper.vm.menuOpen).toBe(true);
-        await wrapper.find('.sidebar__close-button').trigger('click');
-        expect(mockActions.menuOpen).toHaveBeenCalled();
+    const wrapper = mount(Sidebar, {
+      localVue,
+      store,
+      router,
     });
 
-    it('route-link goes to /okrs', () => {
-        const store = new Vuex.Store({
-            state: {
-                menuOpen: true
-            },
-            actions: {
-                menuOpen: jest.fn()
-            }
-        });
+    expect(wrapper.vm.menuOpen).toBe(true);
+    const sidebar = wrapper.find(".sidebar");
+    expect(sidebar.classes()).toContain("sidebar--open");
+    await wrapper.find(".sidebar__close-button").trigger("click");
+    expect(sidebar.classes()).not.toContain("sidebar--active");
+  });
 
-        const wrapper = mount(Sidebar, {
-            localVue,
-            store,
-            router
-        });
+  it("dispatches menuOpen status when close button clicked", async () => {
+    const mockActions = {
+      menuOpen: jest.fn(),
+    };
 
-        const links = wrapper.findAll('a');
-        expect(links.at(0).props('to')).toBe('/okrs');
+    const store = new Vuex.Store({
+      state: {
+        menuOpen: true,
+      },
+      actions: mockActions,
     });
 
+    const wrapper = mount(Sidebar, {
+      localVue,
+      store,
+      router,
+    });
+
+    expect(wrapper.vm.menuOpen).toBe(true);
+    await wrapper.find(".sidebar__close-button").trigger("click");
+    expect(mockActions.menuOpen).toHaveBeenCalled();
+  });
+
+  it("route-link goes to /okrs", () => {
+    const store = new Vuex.Store({
+      state: {
+        menuOpen: true,
+      },
+      actions: {
+        menuOpen: jest.fn(),
+      },
+    });
+
+    const wrapper = mount(Sidebar, {
+      localVue,
+      store,
+      router,
+    });
+
+    const links = wrapper.findAll("a");
+    expect(links.at(0).props("to")).toBe("/okrs");
+  });
 });

@@ -21,13 +21,13 @@
   </div>
 </template>
 <script>
-import WaveBackground from '@/components/ui-elements/WaveBackground'
+import WaveBackground from "@/components/ui-elements/WaveBackground";
 export default {
   components: {
-    WaveBackground
-  }
-}
+    WaveBackground,
+  },
+};
 </script>
 <style lang="scss" scoped>
-  @import '@/assets/styles/organisms/_hero-standard.scss'
+@import "@/assets/styles/organisms/_hero-standard.scss";
 </style>

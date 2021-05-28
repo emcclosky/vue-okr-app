@@ -1,15 +1,13 @@
 <template>
-    <SignupForm/>
+  <SignupForm />
 </template>
 
 <script>
-import SignupForm from '@/components/molecules/SignupForm';
-
+import SignupForm from "@/components/molecules/SignupForm";
 
 export default {
-    components: {
-        SignupForm
-    }
-}
-
+  components: {
+    SignupForm,
+  },
+};
 </script>

@@ -1,16 +1,15 @@
 <template>
   <Layout>
-    <router-view :key="$route.fullPath"/>
+    <router-view :key="$route.fullPath" />
   </Layout>
 </template>
 
-
 <script>
-import Layout from './layouts/default.vue';
+import Layout from "./layouts/default.vue";
 
 export default {
   components: {
-    Layout
-  }
-}
+    Layout,
+  },
+};
 </script>

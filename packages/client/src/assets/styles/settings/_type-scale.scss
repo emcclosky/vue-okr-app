@@ -1,15 +1,15 @@
-@mixin h1 () {
-    @include font-primary-semibold;
-    font-size: $vr * 4;
-    @include mq($bp-medium) {
-        font-size: $vr * 6;
-    }
+@mixin h1() {
+  @include font-primary-semibold;
+  font-size: $vr * 4;
+  @include mq($bp-medium) {
+    font-size: $vr * 6;
+  }
 }
 
-@mixin h2 () {
-    @include font-primary-semibold;
-    font-size: $vr * 3;
-    @include mq($bp-medium) {
-        font-size: $vr * 4;
-    }
+@mixin h2() {
+  @include font-primary-semibold;
+  font-size: $vr * 3;
+  @include mq($bp-medium) {
+    font-size: $vr * 4;
+  }
 }

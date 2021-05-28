@@ -3,12 +3,11 @@
 </template>
 
 <script>
-import ProfileForm from '@/components/molecules/ProfileForm';
+import ProfileForm from "@/components/molecules/ProfileForm";
 
 export default {
   components: {
-    ProfileForm
-  }
-}
-
+    ProfileForm,
+  },
+};
 </script>

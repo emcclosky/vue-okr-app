@@ -1,15 +1,13 @@
 <template>
-    <LoginForm/>
+  <LoginForm />
 </template>
 
 <script>
-import LoginForm from '@/components/molecules/LoginForm';
-
+import LoginForm from "@/components/molecules/LoginForm";
 
 export default {
-    components: {
-        LoginForm
-    }
-}
-
+  components: {
+    LoginForm,
+  },
+};
 </script>

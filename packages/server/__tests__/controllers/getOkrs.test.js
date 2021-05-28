@@ -1,93 +1,121 @@
-const { getOkrs } = require('../../controllers/okr').tests;
+const { getOkrs } = require("../../controllers/okr").tests;
 
-describe('getOkrs method', () => {
-    it('returns 200', async () => {
-        const mockOkr = { find: jest.fn() };
-        const mockLogger = jest.fn();
-        const mockGetOkrs = getOkrs(mockOkr, mockLogger);
-        let returnStatus;
+describe("getOkrs method", () => {
+  it("returns 200", async () => {
+    const mockQuery = jest
+      .fn()
+      .mockResolvedValue([
+        { key_results: { indexOf: jest.fn() } },
+        { key_results: { indexOf: jest.fn() } },
+      ]);
+    const mockReq = {
+      params: {
+        okrId: "123",
+      },
+    };
 
-        const mockRes = {
-            status: (status) => {
-                returnStatus = status;
-                return {
-                    json: jest.fn()
-                }
-            }
+    let returnStatus;
+
+    const mockRes = {
+      locals: {
+        user_id: "234",
+      },
+      status: (status) => {
+        returnStatus = status;
+        return {
+          send: jest.fn(),
+          json: jest.fn(),
         };
+      },
+    };
 
-        await mockGetOkrs(undefined, mockRes);
-        expect(returnStatus).toBe(200);
-    })
+    await getOkrs(mockQuery)(mockReq, mockRes);
+    expect(returnStatus).toBe(200);
+  });
 
-    it('calls express\'s JSON', async () => {
-        const mockOkr = { find: jest.fn() };
-        const mockLogger = jest.fn();
-        const mockGetOkrs = getOkrs(mockOkr, mockLogger);
-        let returnStatus;
-        const mockJson = { json: jest.fn() };
-        const mockRes = {
-            status: (status) => {
-                returnStatus = status;
-                return mockJson;
-            }
+  it("calls express's JSON", async () => {
+    const mockQuery = jest
+      .fn()
+      .mockResolvedValue([
+        { key_results: { indexOf: jest.fn() } },
+        { key_results: { indexOf: jest.fn() } },
+      ]);
+
+    const mockReq = {
+      params: {
+        okrId: "123",
+      },
+    };
+    const mockJson = jest.fn();
+    const mockRes = {
+      locals: {
+        user_id: "234",
+      },
+      status: () => {
+        return {
+          send: jest.fn(),
+          json: mockJson,
         };
+      },
+    };
 
-        await mockGetOkrs(undefined, mockRes);
-        expect(mockJson.json).toHaveBeenCalled();
-    })
+    await getOkrs(mockQuery)(mockReq, mockRes);
+    expect(mockJson).toHaveBeenCalled();
+  });
 
-    it('status is 500 if error', async () => {
-        const mockOkr = { find: () => { throw new Error('woops')} };
-        const mockLogger = { error: jest.fn() };
-        const mockGetOkrs = getOkrs(mockOkr, mockLogger);
-        let returnStatus;
-        const mockRes = {
-            status: (status) => {
-                returnStatus = status;
-                return {
-                    send: jest.fn()
-                };
-            }
+  it("status is 500 if error", async () => {
+    const mockQuery = jest.fn().mockRejectedValue(new Error("woops"));
+
+    const mockReq = {
+      params: {
+        okrId: "123",
+      },
+    };
+
+    let returnStatus;
+
+    const mockRes = {
+      locals: {
+        user_id: "234",
+      },
+      status: (status) => {
+        returnStatus = status;
+        return {
+          send: jest.fn(),
+          json: jest.fn(),
         };
+      },
+    };
 
-        await mockGetOkrs(undefined, mockRes);
-        expect(returnStatus).toBe(500);
-    })
+    await getOkrs(mockQuery)(mockReq, mockRes);
+    expect(returnStatus).toBe(500);
+  });
 
-    it('logs error', async () => {
-        const mockOkr = { find: () => { throw new Error('woops')} };
-        const mockLogger = { error: jest.fn() };
-        const mockGetOkrs = getOkrs(mockOkr, mockLogger);
-        let returnStatus;
-        const mockRes = {
-            status: (status) => {
-                returnStatus = status;
-                return {
-                    send: jest.fn()
-                };
-            }
-        };
+  it("sends error message to client", async () => {
+    const mockQuery = jest.fn().mockRejectedValue(new Error("woops"));
 
-        await mockGetOkrs(undefined, mockRes);
-        expect(mockLogger.error).toHaveBeenCalledWith(new Error('woops'));
-    })
+    const mockReq = {
+      params: {
+        okrId: "123",
+      },
+    };
 
-    it('sends error message to client', async () => {
-        const mockOkr = { find: () => { throw new Error('woops')} };
-        const mockLogger = { error: jest.fn() };
-        const mockGetOkrs = getOkrs(mockOkr, mockLogger);
-        const mockSend = { send: jest.fn() };
-        let returnStatus;
-        const mockRes = {
-            status: (status) => {
-                returnStatus = status;
-                return mockSend;
-            }
-        };
+    const mockSend = { send: jest.fn() };
 
-        await mockGetOkrs(undefined, mockRes);
-        expect(mockSend.send).toHaveBeenCalledWith('Error in trying to retrieve Okrs');
-    })
+    const mockRes = {
+      locals: {
+        user_id: "234",
+      },
+      status: (status) => {
+        returnStatus = status;
+        return mockSend;
+      },
+    };
 
+    await getOkrs(mockQuery)(mockReq, mockRes);
+
+    expect(mockSend.send).toHaveBeenCalledWith(
+      "Error in trying to retrieve Okrs"
+    );
+  });
 });

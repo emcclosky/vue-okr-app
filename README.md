@@ -19,7 +19,7 @@ This application's initial goal is to track individual OKRs with the hope of exp
     - [x] Vue impl
       - [x] Design system
   - Backend
-    - [ ] Add auth middleware/routes
+    - [x] Add auth middleware/routes
     - [x] Switch DB from Mongo to Postgres
     - [x] Write DB scripts
     - [x] Basic CRUD operations for OKRs

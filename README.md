@@ -48,6 +48,8 @@ This application's initial goal is to track individual OKRs with the hope of exp
   - [ ] BE on serverless
   - [ ] Serve statically generated bundle via S3
   - [ ] Figure out a continuous integration pipeline
+- Future Improvements
+  - [ ] Go to tahiti
 
 ### <a name="post-mvp"></a> Immediate post-MVP ideas
 

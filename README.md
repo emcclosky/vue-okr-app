@@ -1,3 +1,5 @@
+![about](https://user-images.githubusercontent.com/29644031/119927090-bc23a280-bf46-11eb-9fad-3ba2fe8fad18.png)
+
 ### <a name="ToC"></a>Table of Contents
 
 1. [Overview](#overview)
@@ -51,3 +53,9 @@ This application's initial goal is to track individual OKRs with the hope of exp
 
 - [ ] Add Team and Organization options
 - [ ] Add reporting
+
+<br />
+
+![dashboard](https://user-images.githubusercontent.com/29644031/119927135-d9587100-bf46-11eb-8e7b-22127ef6ef2d.png)
+
+

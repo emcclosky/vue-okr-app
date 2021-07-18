@@ -20,7 +20,7 @@
                         <input class="" type="number" min="0" max="100" v-model.number="kr.completion_rate">
                     </div>
                 </div>
-                <span class="okr-form__add-more-button" @click.prevent="addKeyResult" tabindex="0" type="button">
+                <span class="okr-form__add-more-button" @click.prevent="submissionData.keyResults.push(submissionData.keyResults.length + 1)" tabindex="0" type="button">
                     <AddIcon /> Add Key Result
                 </span>
                 <hr />
@@ -56,20 +56,13 @@ export default {
         }
     },
     methods: {
-        removeKeyResult(kr, index){
-            this.submissionData.keyResults.splice(index);
-            console.log(this.submissionData.keyResults)
+        async removeKeyResult(kr, index){
+            await this.$store.dispatch('deleteKeyResult', kr.id);
+            this.submissionData.keyResults.splice(index, 1);
         },
         handleSubmit(){
             this.$store.dispatch('editOkr', this.submissionData);
             this.$router.push('/okrs');
-        },
-        addKeyResult(){
-            if(this.submissionData.keyResults.length < 6) {
-                this.submissionData.keyResults.push({result: '', completion_rate: 0, objective_id: this.okrData.id});
-            } else{
-                console.log('OKR LIMIT MET')
-            }
         }
     },
     mounted(){

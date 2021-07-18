@@ -15,7 +15,6 @@ export default {
 		},
 		ADD_KEY_RESULT(state, data) {
 			state.allOkrData.forEach(okr => {
-				console.log('key results', okr.key_results)
 				if(okr.id === data.objectiveId) {
 					okr.key_results.push(data)
 				}
@@ -111,8 +110,20 @@ export default {
 				commit('ADD_KEY_RESULT', payload);
 				return Promise.resolve('success');
 			} catch (err) {
-				console.log('error from createOkr action', err);
+				console.log('error from createKeyResult action', err);
 			}
-		}
+		},
+		async deleteKeyResult({commit}, payload){
+			const krId = payload;
+			try {
+				const axiosParams = {
+					url: `http://127.0.0.1:8000/key-results/key-result/${krId}`,
+					method: 'delete',
+				};
+				return await axiosHandler(axiosParams);
+			} catch (err) {
+				console.log('error from deleteKeyResult action', err);
+			}
+		},
 	},
 }

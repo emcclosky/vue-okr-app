@@ -131,7 +131,8 @@ const putOkr = (logger) => async (req, res) => {
 
     try {
         await query(updateKR, actualValues);
-        await query(insertKR, insertActualValues);
+        if(insertActualValues.length > 0)
+            await query(insertKR, insertActualValues);
         await query(updateObjective, [objective, description, completionRate, id]);
         return res.sendStatus(200);
     } catch(err) {

@@ -15,15 +15,33 @@ const postKeyResult = (logger) => async (req, res) => {
             INSERT into key_results (objective_id, result, completion_rate)
             VALUES ($1, $2, $3);
         `;
-        query(insertKeyResults, [objectiveId, result, completionRate]);
+        await query(insertKeyResults, [objectiveId, result, completionRate]);
         return res.sendStatus(201);
     } catch(error) {
         console.error('error: ', error)
     }
 }
 
+const deleteKeyResult = (logger) => async (req, res) => {
+    const krId = req.params.krId;
+
+    try {
+        const deleteKeyResults = `
+            DELETE FROM key_results
+            where id = $1;
+        `;
+        await query(deleteKeyResults, [krId]);
+        return res.sendStatus(202);
+    } catch(error) {
+        console.error('error: ', error)
+    }
+}
+
+
 exports.postKeyResult = postKeyResult(logger);
+exports.deleteKeyResult = deleteKeyResult(logger);
 
 exports.tests = {
     postKeyResult,
+    deleteKeyResult
 }

@@ -42,7 +42,7 @@
         </div>
         <span
           class="okr-form__add-more-button"
-          @click.prevent="keyResults.push(this.keyResults.length + 1)"
+          @click.prevent="keyResults.push(keyResults.length + 1)"
           tabindex="0"
           type="button"
         >

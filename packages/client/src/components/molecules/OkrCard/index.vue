@@ -146,14 +146,12 @@ export default {
 			if(target.value) {
         await this.$store.dispatch("createKeyResult", { result: target.value, completionRate: 0, objectiveId: this.data.id })
         target.value = '';
-        this.calculateObjectiveCompletion();
 			}
 		},
     deleteOkr(okr) {
       if (this.confirmationCompleted === null) {
         this.showDialog = true;
         this.$store.dispatch("dialogOpen", true);
-        return;
       } else {
         this.$store.dispatch("deleteOkr", okr.id);
       }
